@@ -1,0 +1,381 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="min-vh-100 d-flex flex-column justify-content-between"
+     style="background-color: #e1dfc3f0;">
+
+<!-- Description Section -->
+<a href="{{ url_for('main.home_fully', lang=request.args.get('lang', 'ar')) }}" 
+   class="description-box-link text-decoration-none d-block">
+  <div class="description-box text-center p-5 mb-5 rounded shadow-lg" style="position: relative; overflow: hidden; cursor: pointer;">
+
+    <img src="{{ url_for('static', filename='img/tt.jpg') }}" 
+         alt="Decorative Background"
+         style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                width: 100%; height: 100%; object-fit: cover; 
+                opacity: 0.20; z-index: 0; pointer-events: none;">
+
+    <div style="position: relative; z-index: 1;">
+      {% if request.args.get('lang') == 'en' %}
+        <h2 class="mb-3 fw-bold display-5" style="color: black;">
+          Welcome to <span style="color: #d17a22;">Bousala</span>
+        </h2>
+        
+      {% else %}
+        <h2 class="mb-3 fw-bold display-5" style="color: black;" dir="rtl">
+          مرحبًا بك في <span style="color: #d17a22;">بوصلة</span>
+        </h2>
+        
+      {% endif %}
+    </div>
+
+  </div>
+</a>
+
+<style>
+.description-box-link .description-box {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.description-box-link .description-box:hover,
+.description-box-link .description-box:active {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25) !important;
+}
+</style>
+<!-- 🧭 Definition of Misinformation Section -->
+<section class="container py-5">
+  <div class="misinfo-card shadow-lg rounded-4 p-4 p-md-5 text-center" style="background: linear-gradient(135deg, #fffaf4, #fefcf9); border-left: 8px solid #d17a22;">
+    {% if request.args.get('lang') == 'en' %}
+      <h3 class="fw-bold mb-4" style="color:#d17a22;">What is "Misinformation"? Have you encountered it before?</h3>
+      <p class="fs-5 text-dark mb-4">
+        Misinformation refers to any inaccurate or false content that is published or shared—whether intentionally or unintentionally—that leads to misunderstanding among individuals or the public. It often spreads rapidly through media and social networks, especially during crises or conflicts, due to its emotional impact and ease of sharing without verification.
+      </p>
+      <a href="{{ url_for('main.misinfo_type',  lang=request.args.get('lang', 'ar'))  }}" class="btn misinfo-btn btn-lg rounded-pill px-5 fw-semibold shadow-sm text-white">
+        Learn About Its Types and Risks
+      </a>
+    {% else %}
+      <h3 class="fw-bold mb-4" dir="rtl" style="color:#d17a22;">ما المقصود ب "معلومة مضللة"؟ وهل واجهتك من قبل؟</h3>
+      <p class="fs-5 text-dark mb-4" dir="rtl">
+        تُعرَّف المعلومة المضلِّلة بأنها أي محتوى غير دقيق أو غير صحيح يُنشر أو يُتداول، سواء كان ذلك عن قصد أو عن غير قصد، ويؤدي إلى تكوين فهم خاطئ لدى الأفراد أو الجمهور. وغالبًا ما تنتشر المعلومات المضللة بسرعة عبر وسائل الإعلام ووسائل التواصل الاجتماعي، خاصة في أوقات الأزمات أو النزاعات، نظرًا لتأثيرها العاطفي وسهولة مشاركتها دون التحقق من صحتها.
+      </p>
+      <a href="{{ url_for('main.misinfo_type',  lang=request.args.get('lang', 'ar'))  }}" class="btn misinfo-btn btn-lg rounded-pill px-5 fw-semibold shadow-sm text-white" dir="rtl">
+        تعرف على أنواعها ومخاطرها
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+<!-- ✨ Hover effect -->
+<style>
+.misinfo-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeUp 1.2s ease;
+}
+.misinfo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+}
+.misinfo-btn {
+  background: linear-gradient(90deg, #f2a65a, #d17a22);
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.misinfo-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 20px rgba(209, 122, 34, 0.4);
+}
+@keyframes fadeUp {
+  from {opacity: 0; transform: translateY(40px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+</style>
+
+
+<!-- Features Section -->
+<section class="container py-5">
+  <div class="row g-4">
+    <!-- Card 1 -->
+    <div class="col-md-4">
+      <a href="{{ url_for('main.post', lang=request.args.get('lang', 'en')) }}" class="text-decoration-none">
+        <div class="card h-100 border-0 shadow-lg rounded-4 hover-touch" style="background-color: #f2d0a9; cursor: pointer;">
+          <div class="card-body text-center p-4">
+            <div class="mb-3"><i class="bi bi-pencil-square fs-1 text-dark"></i></div>
+            {% if request.args.get('lang') == 'en' %}
+              <h4 class="fw-semibold mb-3 text-dark">Share Your Story</h4>
+              <p class="text-dark">We will make your voice reach the world. We are here to listen, support, and help you share your experience safely.</p>
+            {% else %}
+              <h4 class="fw-semibold mb-3 text-dark" dir="rtl">شارك قصتك</h4>
+              <p class="text-dark" dir="rtl">نجعل صوتك يصل للعالم. نحن هنا للاستماع ودعمك ومساعدتك على مشاركة تجربتك بأمان.</p>
+            {% endif %}
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="col-md-4">
+      <a href="{{ url_for('main.posts_list', lang=request.args.get('lang', 'en')) }}" class="text-decoration-none">
+        <div class="card h-100 border-0 shadow-lg rounded-4 hover-touch" style="background-color: #a8dadc; cursor: pointer;">
+          <div class="card-body text-center p-4">
+            <div class="mb-3"><i class="bi bi-people-fill fs-1 text-dark"></i></div>
+            {% if request.args.get('lang') == 'en' %}
+              <h4 class="fw-semibold mb-3 text-dark">Experiences & Stories</h4>
+              <p class="text-dark">Read heartfelt stories shared by others. Learn, connect, and find strength through their experiences.</p>
+            {% else %}
+              <h4 class="fw-semibold mb-3 text-dark" dir="rtl">التجارب والقصص</h4>
+              <p class="text-dark" dir="rtl">اقرأ قصص الآخرين الملهمة. تعلم وتواصل واستلهم القوة من تجاربهم.</p>
+            {% endif %}
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="col-md-4">
+      <a href="{{ url_for('main.guidebot', lang=request.args.get('lang', 'en')) }}" class="text-decoration-none">
+        <div class="card h-100 border-0 shadow-lg rounded-4 hover-touch"
+             style="background-color: #ffd6a5; cursor: pointer;">
+          <div class="card-body text-center p-4">
+            <div class="mb-3"><i class="bi bi-robot fs-1 text-dark"></i></div>
+            {% if request.args.get('lang') == 'en' %}
+              <h4 class="fw-semibold mb-3 text-dark">Supporting Your Decisions</h4>
+              <p class="text-dark">Our chatbot helps guide you through reliable information, thoughtful advice, and supportive tips.</p>
+            {% else %}
+              <h4 class="fw-semibold mb-3 text-dark" dir="rtl">دعم اتخاذ القرار</h4>
+              <p class="text-dark" dir="rtl">يساعدك روبوتنا على اتخاذ قراراتك من خلال معلومات موثوقة ونصائح مدروسة ودعم متواصل.</p>
+            {% endif %}
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- 🌿 Advice Section -->
+<section class="container py-5 my-5" id="advice-section">
+  <div class="advice-container shadow-lg rounded-4 d-flex flex-wrap align-items-center p-4 p-md-5">
+
+    <!-- 🌄 Image/Icon Side -->
+    <div class="advice-icon-wrapper me-md-4 mb-4 mb-md-0">
+      <img src="{{ url_for('static', filename='img/advice_safety.jpg') }}" 
+           alt="Advice Icon" 
+           class="advice-icon img-fluid">
+    </div>
+
+    <!-- 💬 Advice Text Side -->
+    <div class="advice-text flex-grow-1">
+      {% if request.args.get('lang') == 'en' %}
+        <h2 class="fw-bold mb-3" style="color: #d17a22;">Stay Smart, Stay Safe</h2>
+        <p class="fs-5 text-dark mb-4">
+          Misinformation can easily influence emotions and choices. Always pause before sharing or reacting — verify the source and protect your peace of mind.
+        </p>
+        <a href="{{ url_for('main.advices', lang='en') }}" 
+           class="btn explore-btn btn-lg rounded-pill px-5 text-white fw-semibold shadow-sm">
+          Explore More Advices
+        </a>
+      {% else %}
+        <h2 class="fw-bold mb-3" dir="rtl" style="color: #d17a22;">كن واعيًا وآمنًا</h2>
+        <p class="fs-5 text-dark mb-4" dir="rtl">
+          يمكن أن تؤثر المعلومات المضللة بسهولة على مشاعرك وقراراتك. خذ لحظة قبل أن تشارك أو تتفاعل — تحقق من المصدر واحمِ سلامك النفسي.
+        </p>
+        <a href="{{ url_for('main.advices', lang='ar') }}" 
+           class="btn explore-btn btn-lg rounded-pill px-5 text-white fw-semibold shadow-sm" dir="rtl">
+          المزيد من النصائح
+        </a>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+<!-- 🌸 Style -->
+<style>
+/* ✨ Smooth entrance animation */
+@keyframes fadeUp {
+  from {opacity: 0; transform: translateY(40px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+#advice-section {
+  animation: fadeUp 1.2s ease;
+}
+
+/* 🌿 Container Design */
+.advice-container {
+  background: linear-gradient(135deg, #fffaf2, #fefcf9);
+  border-left: 8px solid #d17a22;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.advice-container:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.25);
+}
+
+
+/* 🌄 Image/Icon */
+.advice-icon-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.advice-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #f2d0a9;
+  padding: 20px;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+.advice-container:hover .advice-icon {
+  transform: rotate(8deg) scale(1.05);
+}
+
+/* 💬 Text */
+.advice-text h2 {
+  font-size: 2rem;
+}
+.advice-text p {
+  color: #333;
+  line-height: 1.7;
+}
+
+/* 🧡 Button */
+.explore-btn {
+  background: linear-gradient(90deg, #f2a65a, #d17a22);
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.explore-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 20px rgba(209, 122, 34, 0.4);
+}
+
+
+.hover-touch {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-touch:hover,
+.hover-touch:active {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25) !important;
+}
+* { transition: all 0.3s ease-in-out; }
+
+/* ✨ Responsive */
+@media (max-width: 768px) {
+  .advice-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .advice-icon {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+  }
+}
+
+</style>
+
+
+
+
+<!-- ---------------------------
+
+---------------------------- -->
+<section class="container py-5">
+  <a href="{{ url_for('main.statistics', lang=request.args.get('lang','ar')) }}" class="text-decoration-none">
+    <div class="misinfo-stats-card shadow-lg rounded-4 p-5 text-center position-relative overflow-hidden" 
+         style="background: linear-gradient(135deg,#fffaf4,#fcfbf8); border-left:8px solid #d17a22; cursor:pointer;">
+
+      <!-- Decorative Floating Icon -->
+      <div class="icon-wrapper mx-auto mb-4">
+        <i class="bi bi-bar-chart-line-fill" 
+           style="font-size:3rem; color:#d17a22;"></i>
+      </div>
+
+      <!-- Content -->
+      <div style="position:relative; z-index:1;">
+        {% if request.args.get('lang') == 'en' %}
+          <h3 class="fw-bold mb-3" style="color:#d17a22;">Misinformation Statistics</h3>
+          <p class="fs-5 text-dark mb-4">
+            Discover our community survey insights — from demographics and access to information 
+            to verification behaviors and attitudes toward digital tools.
+          </p>
+          <button class="btn btn-lg rounded-pill px-4 fw-semibold explore-btn text-white">
+            View Full Report
+          </button>
+        {% else %}
+          <h3 class="fw-bold mb-3" dir="rtl" style="color:#d17a22;">إحصاءات المعلومات المضللة</h3>
+          <p class="fs-5 text-dark mb-4" dir="rtl">
+            استكشف نتائج استبيان المجتمع — من الخصائص الديموغرافية والوصول إلى المعلومات 
+            إلى سلوكيات التحقق ومواقف أدوات التحقق الرقمية.
+          </p>
+          <button class="btn btn-lg rounded-pill px-4 fw-semibold explore-btn text-white" dir="rtl">
+            عرض التقرير الكامل
+          </button>
+        {% endif %}
+      </div>
+    </div>
+  </a>
+</section>
+
+<!-- ✨ Style -->
+<style>
+.misinfo-stats-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  animation: fadeUp 1.2s ease;
+}
+.misinfo-stats-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+}
+
+/* Icon styling */
+.icon-wrapper {
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle, #f8e3c8 0%, #fceedd 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 20px rgba(209, 122, 34, 0.3);
+}
+.misinfo-stats-card:hover .icon-wrapper {
+  transform: scale(1.1) rotate(8deg);
+  box-shadow: 0 0 30px rgba(209, 122, 34, 0.5);
+}
+
+/* Reuse the orange gradient button */
+.explore-btn {
+  background: linear-gradient(90deg,#f2a65a,#d17a22);
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.explore-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 20px rgba(209, 122, 34, 0.4);
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeUp {
+  from {opacity: 0; transform: translateY(40px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .icon-wrapper {
+    width: 70px;
+    height: 70px;
+  }
+}
+</style>
+
+
+{% endblock %}

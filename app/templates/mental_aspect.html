@@ -1,0 +1,242 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+  body {
+    background: linear-gradient(to bottom right, #fff8f3, #fef6f0);
+  }
+
+  .section-title {
+    color: #d76e41;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    color: #444;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .advice-section {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .advice-section:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
+  .advice-section h4 {
+    color: #d17a22;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .advice-section p {
+    font-size: 1.05rem;
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .tip {
+    background-color: #fff4e8;
+    border-left: 5px solid #d76e41;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .closing {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #444;
+    margin-top: 3rem;
+    padding: 2rem;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #fff2e3, #fdfbf9);
+    border: 1px solid #f3e2d0;
+  }
+
+  [dir="rtl"] {
+    text-align: right;
+  }
+
+  [dir="rtl"] .advice-section {
+    direction: rtl;
+  }
+
+  [dir="ltr"] .advice-section {
+    direction: ltr;
+  }
+
+  .mental-img {
+  transition: transform 0.6s ease, box-shadow 0.6s ease;
+  border-radius: 20px;
+}
+
+.mental-img:hover {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+</style>
+
+<div class="container py-5" {% if lang == 'ar' %}dir="rtl"{% else %}dir="ltr"{% endif %}>
+<img src="{{ url_for('static', filename='img/mental.jpg') }}" 
+     alt="Psychological Support" 
+     class="img-fluid rounded mb-4 mental-img" 
+     style="height: 320px; width: 100%; object-fit: cover;">
+
+    
+  <h2 class="section-title">
+    {% if lang == 'en' %}The Psychological Aspect{% else %}الجانب النفسي{% endif %}
+  </h2>
+  
+
+  <p class="section-subtitle">
+    {% if lang == 'en' %}
+      Psychological Resilience in the Age of Misinformation — In times of war, displacement, and the rapid flow of information, the danger of misinformation is not limited to distorting facts — it also disrupts our psychological and emotional balance. This page is dedicated to helping Sudanese communities stay calm, aware, and connected even amidst chaos and uncertainty.
+    {% else %}
+      المرونة النفسية في زمن المعلومات المضللة — في أوقات الحرب والنزوح وتدفّق المعلومات بسرعة، لا تقتصر خطورة المعلومات المضللة على تشويه الحقائق فقط، بل تمتد لتُحدث اضطرابًا عميقًا في توازننا النفسي والعاطفي. هذه الصفحة مخصصة للدعم النفسي — لمساعدة المجتمعات السودانية على البقاء هادئة، واعية، ومترابطة حتى وسط الفوضى وعدم اليقين.
+    {% endif %}
+  </p>
+
+  <!-- 1 -->
+  <div class="advice-section">
+    <h4>
+      {% if lang == 'en' %}1. Understanding the Emotional Impact of Misinformation{% else %}١. فهم التأثير العاطفي للمعلومات المضللة{% endif %}
+    </h4>
+    <p>
+      {% if lang == 'en' %}
+        Misinformation often triggers strong emotional reactions — fear, panic, anger, or frustration. When every post or alert seems urgent, it becomes hard to distinguish what is real, leading to confusion or risky reactions.
+      {% else %}
+        غالبًا ما تثير المعلومات المضللة ردود فعل عاطفية قوية — كالخوف أو الذعر أو الغضب أو الإحباط. وعندما يبدو كل منشور طارئًا، يصبح من الصعب التمييز بين الحقيقي والزائف، فتتولد حالة من الارتباك أو ردود أفعال متهوّرة.
+      {% endif %}
+    </p>
+    <p class="tip">
+      {% if lang == 'en' %}
+        💡 Tip: Pause before reacting. Breathe deeply and ask, “Am I sure this is true?” Peace of mind matters more than rushing to respond.
+      {% else %}
+        💡 نصيحة: توقّف قبل أن تتفاعل مع أي خبر صادم. خُذ نفسًا عميقًا واسأل نفسك: "هل أنا متأكد أن هذا صحيح؟" راحة بالك أهم من أي تفاعل سريع.
+      {% endif %}
+    </p>
+  </div>
+
+  <!-- 2 -->
+  <div class="advice-section">
+    <h4>{% if lang == 'en' %}2. You Are Not Alone{% else %}٢. لست وحدك{% endif %}</h4>
+    <p>
+      {% if lang == 'en' %}
+        Isolation increases fear. False information disconnects people from one another, but shared experiences restore a sense of safety and trust.
+      {% else %}
+        في أوقات الأزمات، العزلة تزيد الخوف. المعلومات الزائفة تجعل الناس يشعرون بالانفصال، لكن التجارب المشتركة تعيد الإحساس بالأمان والثقة.
+      {% endif %}
+    </p>
+    <p class="tip">
+      {% if lang == 'en' %}
+        💬 Talk with people you trust — family, neighbors, or community leaders. Join safe online spaces or share your story anonymously on Bousala. Communication heals confusion.
+      {% else %}
+        💬 تحدّث مع أشخاص تثق بهم — من العائلة أو الجيران أو المجتمع. انضم لمساحات آمنة أو شارك قصتك بشكل مجهول في بوصلة. التواصل يشفي الحيرة.
+      {% endif %}
+    </p>
+  </div>
+
+  <!-- 3 -->
+  <div class="advice-section">
+    <h4>{% if lang == 'en' %}3. Balancing Awareness and Overexposure{% else %}٣. الموازنة بين الوعي والتعرّض المفرط{% endif %}</h4>
+    <p>
+      {% if lang == 'en' %}
+        Keeping up with news is vital, but too much exposure causes information fatigue. The mind becomes overwhelmed by constant updates.
+      {% else %}
+        الاطلاع على الأخبار ضروري، لكن الإفراط في متابعتها يؤدي إلى إرهاق المعلومات، حيث يتشتت الذهن بسبب التحديثات المستمرة.
+      {% endif %}
+    </p>
+    <p class="tip">
+      {% if lang == 'en' %}
+        🕐 Set times for checking news, and avoid doing it before sleep. Balance information with calm — music, prayer, reading, or nature.
+      {% else %}
+        🕐 حدّد أوقاتًا لمتابعة الأخبار وتجنّب قراءتها قبل النوم. وازن بين المعلومة والراحة: موسيقى هادئة، صلاة، أو قراءة شيء مبهج.
+      {% endif %}
+    </p>
+  </div>
+
+  <!-- 4 -->
+  <div class="advice-section">
+    <h4>{% if lang == 'en' %}4. Strengthen Yourself by Helping Others{% else %}٤. قوِّ نفسك بمساعدة الآخرين{% endif %}</h4>
+    <p>
+      {% if lang == 'en' %}
+        Resilience grows through compassion. When you support others against fear or rumors, you strengthen your own stability.
+      {% else %}
+        المرونة النفسية تزدهر من خلال التعاطف. عندما تساعد غيرك في مواجهة الخوف أو الشائعات، فأنت تعزز قوتك الداخلية.
+      {% endif %}
+    </p>
+    <p class="tip">
+      {% if lang == 'en' %}
+        🌼 Share accurate info kindly — without judgment. Kindness and empathy are silent resistance to the chaos of misinformation.
+      {% else %}
+        🌼 شارك المعلومات الموثوقة بلُطف ودون توبيخ. اللطف والتعاطف هما مقاومة صامتة ضد فوضى المعلومات الزائفة.
+      {% endif %}
+    </p>
+  </div>
+
+  <!-- 5 -->
+  <div class="advice-section">
+    <h4>{% if lang == 'en' %}5. Build Mental Habits That Protect You{% else %}٥. ابنِ عادات ذهنية تحميك{% endif %}</h4>
+    <p>
+      {% if lang == 'en' %}
+        Your mind is like a muscle — strengthen it daily through awareness and reflection.
+      {% else %}
+        عقلك مثل العضلة — كلما دربته بوعي، أصبح أكثر قدرة على الصمود.
+      {% endif %}
+    </p>
+    <p class="tip">
+      {% if lang == 'en' %}
+        🌿 Take 5 minutes daily to breathe, reflect, and question fear-based thoughts. Small mindful steps make a big difference.
+      {% else %}
+        🌿 خصّص خمس دقائق يوميًا للتنفس والتأمل ومراقبة أفكارك. كل خطوة وعي صغيرة تصنع فرقًا كبيرًا.
+      {% endif %}
+    </p>
+  </div>
+
+  <!-- 6 -->
+  <div class="advice-section">
+    <h4>{% if lang == 'en' %}6. When Do You Need Professional Help?{% else %}٦. متى تحتاج إلى مساعدة متخصصة؟{% endif %}</h4>
+    <p>
+      {% if lang == 'en' %}
+        If sadness or anxiety affect your sleep, appetite, or focus — seeking help is courage, not weakness.
+      {% else %}
+        إذا أثّر الحزن أو القلق على نومك أو تركيزك، فطلب المساعدة ليس ضعفًا، بل شجاعة.
+      {% endif %}
+    </p>
+    <p class="tip">
+      {% if lang == 'en' %}
+        💛 Reach out to therapists, counselors, or support lines. Even short conversations help restore balance and hope.
+      {% else %}
+        💛 تواصل مع مختصين نفسيين أو مستشارين. حتى محادثة قصيرة يمكن أن تعيد لك الشعور بالتوازن والأمل.
+      {% endif %}
+    </p>
+  </div>
+
+  <!-- Closing Reflection -->
+  <div class="closing">
+    {% if lang == 'en' %}
+      <p><b>A Closing Reflection</b></p>
+      <p>Misinformation feeds on fear and confusion, but resilience grows through awareness, empathy, and human connection. Bousala aims to be a space where people find truth, humanity, and hope — always choosing light over fear.</p>
+    {% else %}
+      <p><b>تأمل ختامي</b></p>
+      <p>المعلومات المضللة تتغذى على الخوف والارتباك، لكن المرونة تنمو بالوعي والتعاطف والترابط الإنساني. تسعى بوصلة لأن تكون مساحة يجد فيها الناس الحقيقة والإنسانية والأمل — لتختار دائمًا النور على الخوف.</p>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}

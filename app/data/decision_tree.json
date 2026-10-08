@@ -1,0 +1,255 @@
+{
+  "start": {
+    "type": "question",
+    "question": {
+      "en": "👋 Hello! I’m your GuideBot. How can I support you today?",
+      "ar": "👋 أهلاً بك! أنا دليل البوت. كيف يمكنني مساعدتك اليوم؟"
+    },
+    "options": {
+      "awareness": { "en": "🧩 Awareness About Misinformation", "ar": "🧩 التوعية حول المعلومات المضللة" },
+      "mental_support": { "en": "💬 Mental / Psychological Support", "ar": "💬 الدعم النفسي / المعنوي" },
+      "decision_support": { "en": "⚖️ Support Decision-Making", "ar": "⚖️ دعم اتخاذ القرار" }
+    }
+  },
+
+  "awareness": {
+    "type": "sub_question",
+    "question": {
+      "en": "What is misinformation?",
+      "ar": "ما هي المعلومات المضللة؟"
+    },
+    "options": {
+      "misinfo_explained": { "en": "Learn the definition", "ar": "تعرّف على التعريف" }
+    }
+  },
+
+  "misinfo_explained": {
+    "type": "sub_question",
+    "question": {
+      "en": "Misinformation means any false or inaccurate content that is published or shared — whether intentionally or not — and leads people to misunderstand something. It spreads very fast during crises and wars because it triggers emotions and is easy to share without checking its truth.\n\nWould you like to learn more?",
+      "ar": "تعني المعلومات المضللة أي محتوى زائف أو غير دقيق يتم نشره أو مشاركته — سواء بقصد أو بدون قصد — ويؤدي إلى سوء الفهم. تنتشر بسرعة أثناء الأزمات والحروب لأنها تثير العواطف ويسهل مشاركتها دون التحقق من صحتها.\n\nهل ترغب بمعرفة المزيد؟"
+    },
+    "options": {
+      "open_misinfo_types": { "en": "📘 Learn about misinformation types", "ar": "📘 تعرّف على أنواع المعلومات المضللة" },
+      "ask_experience": { "en": "➡️ Continue", "ar": "➡️ متابعة" }
+    }
+  },
+
+  "open_misinfo_types": {
+    "type": "leaf",
+    "advice": {
+      "en": ["Click below to open the page about misinformation types."],
+      "ar": ["انقر أدناه لفتح صفحة أنواع المعلومات المضللة."]
+    },
+    "stories": {
+      "good": {
+        "en": ["🪄 [Open misinfo_type.html](misinfo_type.html)"],
+        "ar": ["🪄 [افتح صفحة misinfo_type.html](misinfo_type.html)"]
+      }
+    }
+  },
+
+  "ask_experience": {
+    "type": "sub_question",
+    "question": {
+      "en": "After learning about misinformation and its types — have you faced it before?",
+      "ar": "بعد أن تعرّفت على المعلومات المضللة وأنواعها، هل واجهتها من قبل؟"
+    },
+    "options": {
+      "faced_yes": { "en": "Yes, I have faced it", "ar": "نعم، واجهتها" },
+      "faced_no": { "en": "No, not yet", "ar": "لا، لم أواجهها" }
+    }
+  },
+
+  "faced_yes": {
+    "type": "leaf",
+    "advice": {
+      "en": ["You can share your experience to help others."],
+      "ar": ["يمكنك مشاركة تجربتك لمساعدة الآخرين."]
+    },
+    "stories": {
+      "good": {
+        "en": ["📝 [Share your story here](post.html)"],
+        "ar": ["📝 [شارك قصتك هنا](post.html)"]
+      }
+    }
+  },
+
+  "faced_no": {
+    "type": "sub_question",
+    "question": {
+      "en": "You can see what Sudanese journalists write about this.",
+      "ar": "يمكنك الاطّلاع على ما يكتبه الصحفيون السودانيون حول هذا الموضوع."
+    },
+    "options": {
+      "interested_yes": { "en": "Yes, I want to read", "ar": "نعم، أريد القراءة" },
+      "interested_no": { "en": "No, maybe later", "ar": "لا، ربما لاحقاً" }
+    }
+  },
+
+  "interested_yes": {
+    "type": "leaf",
+    "advice": {
+      "en": ["Here are two useful articles about misinformation:"],
+      "ar": ["إليك مقالتين مفيدتين حول المعلومات المضللة:"]
+    },
+    "stories": {
+      "good": {
+        "en": [
+          "📰 [Article 1: How Misinformation Spreads in War Times](#)",
+          "📰 [Article 2: The Role of Media in Crisis Communication](#)"
+        ],
+        "ar": [
+          "📰 [المقالة 1: كيف تنتشر المعلومات المضللة أثناء الحروب](#)",
+          "📰 [المقالة 2: دور الإعلام في التواصل أثناء الأزمات](#)"
+        ]
+      }
+    }
+  },
+
+  "interested_no": {
+    "type": "leaf",
+    "advice": {
+      "en": ["No problem, you can start over anytime."],
+      "ar": ["لا مشكلة، يمكنك البدء من جديد في أي وقت."]
+    },
+    "stories": {
+      "good": {
+        "en": ["🔁 [Start Over](#start)"],
+        "ar": ["🔁 [ابدأ من جديد](#start)"]
+      }
+    }
+  },
+
+  "mental_support": {
+    "type": "sub_question",
+    "question": {
+      "en": "How can I help you?",
+      "ar": "كيف يمكنني مساعدتك؟"
+    },
+    "options": {
+      "mental_impact": { "en": "🧠 Know the mental impact of misinformation", "ar": "🧠 معرفة التأثير النفسي للمعلومات المضللة" },
+      "therapists": { "en": "📞 Show phone numbers of therapists", "ar": "📞 عرض أرقام المعالجين النفسيين" }
+    }
+  },
+
+  "mental_impact": {
+    "type": "leaf",
+    "advice": {
+      "en": ["Click below to explore advice and coping strategies."],
+      "ar": ["انقر أدناه لاستكشاف النصائح واستراتيجيات التكيف."]
+    },
+    "stories": {
+      "good": {
+        "en": ["💡 [Open Advice Section](advices.html)"],
+        "ar": ["💡 [افتح قسم النصائح](advices.html)"]
+      }
+    }
+  },
+
+  "therapists": {
+    "type": "sub_question",
+    "question": {
+      "en": "Would you like to visit a clinic or communicate remotely?",
+      "ar": "هل ترغب في زيارة عيادة أم التواصل عن بُعد؟"
+    },
+    "options": {
+      "go_clinics": { "en": "🏥 Go to clinics", "ar": "🏥 الذهاب إلى العيادات" },
+      "remote_contact": { "en": "💻 Remote communication", "ar": "💻 التواصل عن بُعد" }
+    }
+  },
+
+  "go_clinics": {
+    "type": "sub_question",
+    "question": {
+      "en": "Please choose your country:",
+      "ar": "من فضلك اختر دولتك:"
+    },
+    "options": {
+      "egypt": { "en": "🇪🇬 Egypt", "ar": "🇪🇬 مصر" },
+      "ksa": { "en": "🇸🇦 Saudi Arabia", "ar": "🇸🇦 المملكة العربية السعودية" }
+    }
+  },
+
+  "egypt": {
+    "type": "leaf",
+    "advice": {
+      "en": ["Here are some available clinics in Egypt:"],
+      "ar": ["فيما يلي بعض العيادات المتاحة في مصر:"]
+    },
+    "stories": {
+      "good": {
+        "en": [
+          "🌿 Cairo Mind Center – +20 111 222 3333",
+          "🌿 Hope Psychology Clinic – +20 100 555 9999"
+        ],
+        "ar": [
+          "🌿 مركز كايرو مايند – ‎+20 111 222 3333",
+          "🌿 عيادة الأمل النفسية – ‎+20 100 555 9999"
+        ]
+      }
+    }
+  },
+
+  "ksa": {
+    "type": "leaf",
+    "advice": {
+      "en": ["Here are some available clinics in Saudi Arabia:"],
+      "ar": ["فيما يلي بعض العيادات المتاحة في المملكة العربية السعودية:"]
+    },
+    "stories": {
+      "good": {
+        "en": [
+          "🌿 Al Hayat Mental Health Center – +966 55 555 8888",
+          "🌿 Serenity Clinic – +966 54 333 7777"
+        ],
+        "ar": [
+          "🌿 مركز الحياة للصحة النفسية – ‎+966 55 555 8888",
+          "🌿 عيادة الصفاء – ‎+966 54 333 7777"
+        ]
+      }
+    }
+  },
+
+  "remote_contact": {
+    "type": "leaf",
+    "advice": {
+      "en": ["Here are online therapists you can contact remotely:"],
+      "ar": ["فيما يلي بعض المعالجين النفسيين عبر الإنترنت:"]
+    },
+    "stories": {
+      "good": {
+        "en": [
+          "🌐 Dr. Laila Hassan – WhatsApp: +20 101 333 4444",
+          "🌐 MindCare Online – Website: mindcareonline.org"
+        ],
+        "ar": [
+          "🌐 د. ليلى حسن – واتساب: ‎+20 101 333 4444",
+          "🌐 مايند كير أونلاين – الموقع: mindcareonline.org"
+        ]
+      }
+    }
+  },
+
+  "decision_support": {
+    "type": "leaf",
+    "advice": {
+      "en": ["This section is under development. Stay tuned for updates!"],
+      "ar": ["هذا القسم قيد التطوير. ترقّب التحديثات القادمة!"]
+    },
+    "stories": {
+      "good": {
+        "en": ["⚙️ Decision-making tools will be available soon."],
+        "ar": ["⚙️ سيتم إتاحة أدوات دعم القرار قريباً."]
+      }
+    }
+  },
+
+  "fallback": {
+    "type": "leaf",
+    "advice": {
+      "en": ["Sorry, I couldn’t find an answer for that."],
+      "ar": ["عذرًا، لم أتمكن من إيجاد إجابة لذلك."]
+    }
+  }
+}

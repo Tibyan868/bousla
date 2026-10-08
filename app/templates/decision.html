@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+  <h2 class="fw-bold mb-5 text-center" style="color: #d17a22;">
+    {% if lang == 'en' %}
+      Advice for Decision-Making During the War
+    {% else %}
+      نصائح لاتخاذ القرار أثناء الحرب
+    {% endif %}
+  </h2>
+
+  <div class="card shadow-sm border-0 rounded-4 overflow-hidden mb-5">
+    <img src="{{ url_for('static', filename='img/s.jpg') }}" 
+         alt="Decision-Making During the War" 
+         class="card-img-top" style="height: 350px; object-fit: cover;">
+    <div class="card-body px-4 py-5" style="line-height: 1.9; font-size: 1.05rem;">
+      
+      {% if lang == 'en' %}
+      <h5 class="fw-bold text-center mb-4" style="color:#d76e41;">Advice for Decision-Making During the War</h5>
+
+      <p><strong>1. Prioritize Immediate Safety and Mobility</strong><br>
+      <b>The Problem:</b> The most immediate threat is often unpredictable violence and being trapped in an area of escalating conflict. Decisions can be delayed by waiting for certainty or perfect circumstances, which may never arrive.<br>
+      <b>How to Face It (Decision Improvement):</b> Adopt a "move now" mentality if a safe corridor or window of opportunity appears. This is about Risk Assessment over Comfort.<br>
+      <b>Action:</b> Have a small "go-bag" ready at all times. Act on credible information about a temporary calm or a safe route, even if it's imperfect. Do not over-analyze an opportunity to move to a safer location, as hesitation can be fatal. Delaying a move is often a greater risk than moving carefully.</p>
+
+      <p><strong>2. Base Actions on Verified Local Information</strong><br>
+      <b>The Problem:</b> Misinformation, rumors, and propaganda are rampant during war. Relying on unverified sources leads to panic, poor evacuation routes, or hoarding based on false scarcity.<br>
+      <b>How to Face It (Decision Improvement):</b> Establish a small, trusted network for information exchange and cross-check multiple sources. This is about Critical Evaluation over Emotion.<br>
+      <b>Action:</b> When you hear critical information (e.g., "fighting is moving south," "a certain road is safe"), confirm it with at least two reliable contacts physically in or recently through that area—not just social media posts.</p>
+
+      <p><strong>3. Focus on Controllables and Short-Term Planning</strong><br>
+      <b>The Problem:</b> The scale of crisis and loss of normalcy (job, home, stability) can cause paralyzing anxiety.<br>
+      <b>How to Face It:</b> Break down big problems into small, daily, manageable tasks—Actionable Steps over Existential Dread.<br>
+      <b>Action:</b> Instead of planning "how to survive the war," plan "today’s water, tomorrow’s food, and this week’s security." Focus on immediate needs to restore agency and reduce paralysis.</p>
+
+      <p><strong>4. Manage Psychological and Emotional Distress</strong><br>
+      <b>The Problem:</b> Trauma and stress impair judgment and lead to impulsive or emotional decisions.<br>
+      <b>How to Face It:</b> Include short, intentional grounding or breathing practices. Mental Resilience over Reaction.<br>
+      <b>Action:</b> Pause and breathe before deciding to leave shelter or trust someone. Talk major choices through with a calm, trusted person. Acknowledge fear, but don’t let it dictate your actions.</p>
+
+      <p><strong>5. Conserve and Ration Crucial Resources</strong><br>
+      <b>The Problem:</b> Scarcity can push people into dangerous or desperate behavior.<br>
+      <b>How to Face It:</b> Implement strict rationing and strategic planning—Forecasting over Impulse.<br>
+      <b>Action:</b> Keep clear inventory. Make simple rules (e.g., one meal/day). Resupply only when stocks hit critical lows, not out of fear. Use money wisely and prefer barter or safe digital transfers.</p>
+
+      <p><strong>6. Prioritize Group Cohesion and Communication</strong><br>
+      <b>The Problem:</b> Fear and disagreement can divide families and communities, leading to unsafe solo actions.<br>
+      <b>How to Face It:</b> Make decisions collectively. Shared Responsibility over Individual Panic.<br>
+      <b>Action:</b> Establish a communication plan and clear roles. Hold short check-ins to align actions and ensure unity—coherent group decisions increase safety and survival chances.</p>
+
+      {% else %}
+
+      <h5 class="fw-bold text-center mb-4" style="color:#d76e41;">نصائح لاتخاذ القرار أثناء الحرب</h5>
+
+      <p><strong>١. إعطاء الأولوية للسلامة الفورية والتنقل</strong><br>
+      <b>المشكلة:</b> التهديد الأكثر إلحاحًا هو العنف غير المتوقع والانحصار في مناطق الصراع.<br>
+      <b>كيفية التعامل معه:</b> اعتمد عقلية "التحرك الآن" إذا ظهر ممر آمن أو فرصة مؤقتة. هذا يتعلق بتقييم المخاطر أكثر من الراحة.<br>
+      <b>الإجراء:</b> احتفظ دائمًا بحقيبة طوارئ صغيرة، وتصرف بناءً على المعلومات الموثوقة حتى لو لم تكن مثالية. لا تتردد طويلاً، فالتأخير قد يكون قاتلًا.</p>
+
+      <p><strong>٢. استند إلى المعلومات المحلية المؤكدة في اتخاذ الإجراءات</strong><br>
+      <b>المشكلة:</b> تنتشر المعلومات المضللة والشائعات أثناء الحرب.<br>
+      <b>كيفية التعامل معها:</b> أنشئ شبكة صغيرة وموثوقة لتبادل المعلومات والتحقق من مصادر متعددة. التقييم النقدي أهم من العاطفة.<br>
+      <b>الإجراء:</b> تحقق من أي معلومة حرجة من خلال مصدرين موثوقين فعليًا في المنطقة، وليس فقط من وسائل التواصل الاجتماعي.</p>
+
+      <p><strong>٣. التركيز على ما يمكن التحكم فيه والتخطيط قصير الأمد</strong><br>
+      <b>المشكلة:</b> حجم الأزمة وفقدان الاستقرار يسببان شللًا في اتخاذ القرار.<br>
+      <b>كيفية مواجهتها:</b> قسم المشكلات الكبيرة إلى مهام يومية صغيرة يمكن تنفيذها. خطوات عملية بدلًا من الخوف.<br>
+      <b>الإجراء:</b> خطط لماء اليوم وطعام الغد وأمن الأيام القليلة القادمة. التركيز على الاحتياجات الفورية يعزز الشعور بالتحكم ويقلل من القلق.</p>
+
+      <p><strong>٤. إدارة الضيق النفسي والعاطفي</strong><br>
+      <b>المشكلة:</b> الصدمات والتوتر تقلل القدرة على الحكم الصحيح.<br>
+      <b>كيفية مواجهتها:</b> استخدم ممارسات تهدئة بسيطة للحفاظ على توازنك. المرونة النفسية أهم من الرد الفوري.<br>
+      <b>الإجراء:</b> خذ وقتًا للتنفس قبل اتخاذ أي قرار، وتحدث مع شخص موثوق وهادئ لتقييم الخيارات بعقلانية.</p>
+
+      <p><strong>٥. الحفاظ على الموارد الحيوية وتقنينها</strong><br>
+      <b>المشكلة:</b> ندرة الموارد تدفع إلى تصرفات خطرة.<br>
+      <b>كيفية مواجهتها:</b> طبق تقنينًا صارمًا وخططًا دقيقة للحصول على الإمدادات. التنبؤ أهم من الاندفاع.<br>
+      <b>الإجراء:</b> حافظ على سجل واضح للمؤن، وضع قواعد بسيطة للاستهلاك، ولا تغامر إلا عند الحاجة الحقيقية.</p>
+
+      <p><strong>٦. إعطاء الأولوية لتماسك المجموعة والتواصل</strong><br>
+      <b>المشكلة:</b> الخوف واختلاف الآراء قد يسببان الانقسام واتخاذ قرارات فردية خطيرة.<br>
+      <b>كيفية مواجهتها:</b> اجعل القرارات جماعية وواضحة الأدوار. المسؤولية المشتركة بدل الذعر الفردي.<br>
+      <b>الإجراء:</b> اتفق مسبقًا على خطة تواصل ونقطة تجمع، واعقد اجتماعات دورية قصيرة لتبادل المعلومات وتوحيد القرارات.</p>
+
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+</style>
+{% endblock %}

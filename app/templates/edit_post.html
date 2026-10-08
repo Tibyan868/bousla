@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- 🌅 Modern Soft Blue Theme -->
+<section class="py-5" style="background: linear-gradient(135deg, #fdfaf6, #fff8ef, #f7eee4); min-height: 100vh;">
+  <div class="container" style="max-width: 800px;">
+
+    <!-- Header Card -->
+    <div class="text-center mb-5 p-4 rounded-4 shadow-lg header-card">
+      <h2 class="fw-bold mb-2 display-6">
+        ✏ {% if lang == 'en' %}Edit Your Story{% else %}تعديل قصتك{% endif %}
+      </h2>
+      <p class="mb-0">
+        {% if lang == 'en' %}
+          Update your story below. Other details remain unchanged.
+        {% else %}
+          يمكنك تعديل قصتك فقط، باقي التفاصيل ستظل كما هي.
+        {% endif %}
+      </p>
+    </div>
+
+    <!-- Edit Form Card -->
+    <div class="card border-0 shadow-lg rounded-4 form-card">
+      <div class="card-body p-5">
+
+        <form method="POST">
+
+          <!-- Story Field -->
+          <div class="mb-4">
+            <label class="form-label fw-bold text-dark fs-5">
+              {% if lang == 'en' %}Your Story{% else %}قصتك{% endif %}
+            </label>
+            <textarea id="story" name="story" class="form-control shadow-sm rounded-3 interactive-field" 
+                      rows="6" maxlength="3000" required>{{ post.content }}</textarea>
+            <div class="d-flex justify-content-between mt-2 small text-muted">
+              <span>{% if lang == 'en' %}Max 3000 characters{% else %}الحد الأقصى 3000 حرف{% endif %}</span>
+              <span id="char-count">0 / 3000</span>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="d-flex gap-3 mt-4">
+            <button type="submit" class="btn btn-gradient px-4 py-2 rounded-pill shadow-sm">
+              💾 {% if lang == 'en' %}Save Changes{% else %}حفظ التعديلات{% endif %}
+            </button>
+            <a class="btn btn-outline-dark px-4 py-2 rounded-pill shadow-sm interactive-btn" 
+               href="{{ url_for('main.posts_list', lang=lang) }}">
+               {% if lang == 'en' %}Cancel{% else %}إلغاء{% endif %}
+            </a>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ✨ Styles -->
+<style>
+/* Header Card - Interactive Gradient */
+.header-card {
+  background: linear-gradient(90deg, #ffefdb, #ffe3c2);
+  color: rgb(58, 55, 55);
+  transition: all 0.4s ease;
+  transform: translateY(0);
+}
+.header-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(2, 136, 209, 0.3);
+}
+
+/* Gradient Button */
+.btn-gradient {
+  background: linear-gradient(90deg, #29b6f6, #0288d1);
+  color: white !important;
+  font-weight: 500;
+  border: none;
+  transition: all 0.3s ease;
+}
+.btn-gradient:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(2, 136, 209, 0.4);
+}
+
+/* Interactive Textarea */
+.interactive-field {
+  border: 2px solid #b3e5fc;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+.interactive-field:focus {
+  border-color: #29b6f6;
+  box-shadow: 0 0 10px rgba(2, 136, 209, 0.3);
+}
+
+/* Interactive Buttons */
+.interactive-btn {
+  transition: all 0.3s ease;
+}
+.interactive-btn:hover {
+  background-color: #0288d1;
+  color: white !important;
+  border-color: #0288d1;
+  transform: translateY(-2px);
+}
+
+/* Form Card Hover Effect */
+.form-card {
+  transition: all 0.3s ease;
+}
+.form-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* Responsive Tweaks */
+@media (max-width: 576px) {
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+</style>
+
+<!-- JS for Live Character Count -->
+<script>
+const storyInput = document.getElementById("story");
+const charCount = document.getElementById("char-count");
+function updateCharCount() {
+  charCount.textContent = storyInput.value.length + " / 3000";
+}
+storyInput.addEventListener("input", updateCharCount);
+updateCharCount();
+</script>
+
+{% endblock %}

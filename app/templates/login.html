@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="{{ 'ar' if lang == 'ar' else 'en' }}" dir="{{ 'rtl' if lang == 'ar' else 'ltr' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bousala - {% if lang == 'en' %}Login{% else %}تسجيل الدخول{% endif %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* 🌿 Global Page Styling */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff3e0, #ffe0b2, #ffcc80);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ✨ Floating Orbs Background */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(50px);
+      opacity: 0.25;
+      animation: float 10s ease-in-out infinite;
+    }
+    .orb:nth-child(1) {
+      width: 200px; height: 200px;
+      background: #d17a22;
+      top: 10%; left: 5%;
+      animation-delay: 0s;
+    }
+    .orb:nth-child(2) {
+      width: 250px; height: 250px;
+      background: #ffd7a3;
+      bottom: 15%; right: 10%;
+      animation-delay: 3s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-25px); }
+    }
+
+    /* 🌸 Login Card Styling */
+    .login-card {
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      padding: 40px;
+      width: 100%;
+      max-width: 460px;
+      border-top: 6px solid #d17a22;
+      animation: fadeIn 1s ease forwards;
+      transition: transform 0.3s ease;
+    }
+    .login-card:hover {
+      transform: translateY(-5px);
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* 🧭 Header */
+    .login-card h3 {
+      color: #d17a22;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    /* 📝 Form fields */
+    .form-label {
+      font-weight: 600;
+      color: #5c4633;
+    }
+    .form-control {
+      border-radius: 12px;
+      padding: 12px 16px;
+      border: 1.5px solid #e3c29b;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus {
+      border-color: #d17a22;
+      box-shadow: 0 0 8px rgba(209,122,34,0.3);
+    }
+
+    /* 💡 Buttons */
+    .btn-custom {
+      background: linear-gradient(135deg, #e28d2d, #d17a22);
+      border: none;
+      border-radius: 30px;
+      padding: 14px;
+      font-weight: 600;
+      color: white;
+      transition: all 0.3s ease;
+      width: 100%;
+      box-shadow: 0 6px 15px rgba(209,122,34,0.25);
+    }
+    .btn-custom:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.1);
+      box-shadow: 0 8px 20px rgba(209,122,34,0.35);
+    }
+
+    /* 📩 Flash messages */
+    .alert {
+      border-radius: 12px;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    /* 🔗 Bottom link */
+    .register-link {
+      color: #d17a22;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .register-link:hover {
+      text-decoration: underline;
+    }
+
+    /* 📱 Responsive */
+    @media (max-width: 576px) {
+      .login-card {
+        padding: 30px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🌈 Floating Orbs -->
+  <div class="orb"></div>
+  <div class="orb"></div>
+
+  <!-- 💫 Login Card -->
+  <div class="login-card shadow-lg">
+    <h3>{% if lang == 'en' %}Login{% else %}تسجيل الدخول{% endif %}</h3>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        {% for category, msg in messages %}
+          <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ msg }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- Login Form -->
+    <form method="POST" novalidate>
+      <div class="mb-3">
+        <label class="form-label">
+          {% if lang == 'en' %}Username{% else %}اسم المستخدم{% endif %}
+        </label>
+        <input type="text" name="username" class="form-control form-control-lg" required>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">
+          {% if lang == 'en' %}Password{% else %}كلمة المرور{% endif %}
+        </label>
+        <input type="password" name="password" class="form-control form-control-lg" required>
+      </div>
+
+      <button type="submit" class="btn btn-custom btn-lg">
+        {% if lang == 'en' %}Login{% else %}دخول{% endif %}
+      </button>
+
+      <div class="mt-4 text-center">
+        <a href="{{ url_for('main.register', lang=lang) }}" class="register-link">
+          {% if lang == 'en' %}
+            Don't have an account? Register
+          {% else %}
+            ليس لديك حساب؟ أنشئ حساباً
+          {% endif %}
+        </a>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

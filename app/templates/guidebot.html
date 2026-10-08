@@ -1,0 +1,595 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- ===============================
+   GuideBot Header
+================================== -->
+<section class="guidebot-header text-center py-5">
+  <div class="container">
+    <h2 class="fw-bold mb-3 page-title">
+      {% if lang == 'en' %}
+        🤖 GuideBot – Your Supportive Companion
+      {% else %}
+        🤖 دليل بوت – رفيقك الداعم
+      {% endif %}
+    </h2>
+
+    <p class="lead mb-0 page-subtitle">
+      {% if lang == 'en' %}
+        Your assistant for awareness, emotional support, and smart decision-making during crises.
+      {% else %}
+        مساعدك للتوعية، الدعم النفسي، واتخاذ القرارات الحكيمة أثناء الأزمات.
+      {% endif %}
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+   CHAT WRAPPER
+=============================================================== -->
+<section class="container my-5">
+  <div class="chatbot-wrapper shadow-lg rounded-4" id="chat-wrapper">
+    <div id="chat-box" class="chat-box"></div>
+    <div id="option-area" class="option-area"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+   STYLES
+=============================================================== -->
+<style>
+
+/* ---------------------------------
+   Global Page Styling
+---------------------------------- */
+body {
+  background: linear-gradient(160deg, #fff7ef, #ffe4cc, #ffd2a1);
+  background-attachment: fixed;
+  font-family: 'Cairo', 'Inter', sans-serif;
+}
+
+.page-title {
+  color:#5a2800;
+  font-size: 2.5rem;
+}
+
+.page-subtitle {
+  font-size: 1.15rem;
+  max-width: 850px;
+  margin: auto;
+  color: #5c3c1e;
+}
+
+.guidebot-header {
+  background: linear-gradient(135deg, #ffe6cc, #ffcf99, #ffb56b);
+  color: #4b2f15;
+  border-bottom: 4px solid #e0a36e;
+}
+
+
+
+/* ---------------------------------
+   Chat Container
+---------------------------------- */
+.chatbot-wrapper {
+  background: #ffffffee;
+  border: 2px solid #f7d8b9;
+  max-width: 780px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  overflow: hidden;
+  backdrop-filter: blur(3px);
+}
+
+.chat-box {
+  height: 550px;
+  overflow-y: auto;
+  padding: 25px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: rgba(255, 245, 232, 0.7);
+  scroll-behavior: smooth;
+}
+
+.option-area {
+  background: #fff8f1;
+  padding: 15px 18px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  border-top: 2px solid #f3d4b1;
+}
+
+/* ---------------------------------
+   Chat Bubbles
+---------------------------------- */
+
+.message-bubble {
+  max-width: 88%;
+  padding: 14px 20px;
+  border-radius: 20px;
+  font-size: 1.12rem;
+  line-height: 1.55;
+  word-wrap: break-word;
+  background: #eee;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+/* Bot bubble */
+.bot-message { 
+  align-self: flex-start; 
+}
+
+.bot-message .message-bubble {
+  background: #f3e8d9;
+  border-bottom-left-radius: 5px;
+  color: #3a2c20;
+}
+
+/* User bubble */
+.user-message { 
+  align-self: flex-end; 
+  text-align: right;
+}
+
+.user-message .message-bubble {
+  background: linear-gradient(120deg, #ff9f53, #e27a1f);
+  color: white;
+  border-bottom-right-radius: 5px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+
+
+/* ---------------------------------
+   Typing Dots Effect
+---------------------------------- */
+.typing span {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin: 0 2px;
+  background-color: #8a847c;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: blink 1.5s infinite ease-in-out;
+}
+
+.typing span:nth-child(2) { animation-delay: 0.2s; }
+.typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0.4; transform: scale(1); }
+  40% { opacity: 1; transform: scale(1.35); }
+}
+
+
+
+/* ---------------------------------
+   Buttons
+---------------------------------- */
+.btn-option {
+  background: linear-gradient(135deg, #e38829, #cc6a11);
+  color: #fff;
+  border: none;
+  border-radius: 26px;
+  padding: 11px 22px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0px 3px 6px rgba(180, 100, 20, 0.25);
+}
+
+.btn-option:hover {
+  background: linear-gradient(135deg, #cc6a11, #a9550c);
+  transform: translateY(-2px);
+}
+
+
+
+/* ---------------------------------
+   RTL Support
+---------------------------------- */
+[dir="rtl"] .chat-box,
+[dir="rtl"] .option-area {
+  text-align: right;
+}
+
+[dir="rtl"] .bot-message .message-bubble {
+  border-bottom-right-radius: 5px; 
+  border-bottom-left-radius: 20px;
+}
+
+[dir="rtl"] .user-message .message-bubble {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 20px;
+}
+
+
+
+/* Smooth fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+</style>
+
+<!-- ===============================
+   Chatbot Script
+================================== -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const chatBox = document.getElementById('chat-box');
+  const optionArea = document.getElementById('option-area');
+  let currentLang = 'en';
+
+  // FIX: user-written stories were inserted as raw HTML (stored XSS). Escape them.
+  function esc(str) {
+    return String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function addMessage(text, sender = 'bot', delay = true) {
+    if (sender === 'bot' && delay) {
+      const typing = document.createElement('div');
+      typing.className = 'bot-message';
+      typing.innerHTML = `<div class="message-bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
+      chatBox.appendChild(typing);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      setTimeout(() => {
+        typing.remove();
+        actuallyAdd(text, sender);
+      }, 1000);
+    } else {
+      actuallyAdd(text, sender);
+    }
+  }
+
+  function actuallyAdd(text, sender) {
+    const msg = document.createElement('div');
+    msg.className = `${sender}-message`;
+    msg.innerHTML = `<div class="message-bubble">${text}</div>`;
+    chatBox.appendChild(msg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  function setButtons(buttons) {
+    optionArea.innerHTML = '';
+    buttons.forEach(b => {
+      const btn = document.createElement('button');
+      btn.className = 'btn-option';
+      btn.textContent = b.label;
+      btn.onclick = () => {
+        addMessage(esc(b.label), 'user', false);
+        optionArea.innerHTML = '';
+        setTimeout(b.action, 600);
+      };
+      optionArea.appendChild(btn);
+    });
+  }
+
+  function restart() {
+    optionArea.innerHTML = '';
+    chatBox.innerHTML = '';
+    startConversation();
+  }
+
+  function startConversation() {
+    addMessage("👋 Hello! I'm GuideBot, here to assist you with awareness, mental health, and decision-making during conflict.");
+    addMessage("Please choose your language to continue:");
+    setButtons([
+      { label: 'English', action: () => chooseLanguage('en') },
+      { label: 'العربية', action: () => chooseLanguage('ar') }
+    ]);
+  }
+
+  function chooseLanguage(lang) {
+    currentLang = lang;
+    document.documentElement.dir = (lang === 'ar' ? 'rtl' : 'ltr');
+    chatBox.innerHTML = '';
+    addMessage(
+      lang === 'en'
+        ? "Great! Please choose one of the following areas I can help you with:"
+        : "رائع! من فضلك اختر المجال الذي يمكنني مساعدتك فيه:"
+    );
+    setButtons([
+      { label: (lang === 'en' ? '🧠 Awareness About Misinformation' : '🧠 التوعية بالمعلومات المضللة'), action: () => (lang === 'en' ? awarenessFlow() : awarenessFlowAr()) },
+      { label: (lang === 'en' ? '💬 Mental / Psychological Support' : '💬 الدعم النفسي / المعنوي'), action: () => (lang === 'en' ? mentalFlow() : mentalFlowAr()) },
+      { label: (lang === 'en' ? '🕊️ Support Decision-Making' : '🕊️ دعم اتخاذ القرار'), action: () => (lang === 'en' ? decisionFlow() : decisionFlowAr()) },
+      { label: (lang === 'en' ? '✨ Ask the AI Assistant' : '✨ اسأل المساعد الذكي'), action: () => { window.location.href = "{{ url_for('main.assistant_page') }}?lang=" + lang; } }
+    ]);
+  }
+
+  /** ===== ENGLISH FLOWS ===== **/
+
+  function awarenessFlow() {
+    addMessage("❓ What is misinformation?");
+    addMessage("Misinformation means any false or inaccurate content shared intentionally or not, leading people to misunderstand something. It spreads fast during crises because it triggers emotions and is easy to share without verification.");
+    setButtons([
+      { label: '📘 Learn about types', action: () => { window.open("{{ url_for('main.misinfo_type', lang='en') }}", "_blank"); setButtons([{ label: 'Next ➡️', action: awarenessNext }, { label: 'Start Over 🔄', action: restart }]); } }
+    ]);
+  }
+
+  function awarenessNext() {
+    addMessage("Did you face misinformation before?");
+    setButtons([
+      { label: 'Yes', action: facedYes },
+      { label: 'No', action: facedNo }
+    ]);
+  }
+
+  function facedYes() {
+    addMessage("You can share your story here:");
+    setButtons([
+      { label: '📝 Share Story', action: () => { window.open("{{ url_for('main.post', lang='en') }}", "_blank"); setButtons([{ label: 'Start Over 🔄', action: restart }]); } },
+      { label: 'Start Over 🔄', action: restart }
+    ]);
+  }
+
+  function facedNo() {
+    addMessage("You can see what Sudanese journalists write about this.");
+    setButtons([
+      { label: 'View Articles', action: showArticles },
+      { label: 'Start Over 🔄', action: restart }
+    ]);
+  }
+
+  function showArticles() {
+    addMessage(`<a href="https://www.khmstashr.com/index.php?page=guideline&guideline_id=6" target="_blank">📰 Article 1</a>`);
+    addMessage(`<a href="https://wasl.news" target="_blank">📰 Article 2</a>`);
+    setButtons([{ label: 'Start Over 🔄', action: restart }]);
+  }
+
+  function mentalFlow() {
+    addMessage("💭 How can I help you?");
+    setButtons([
+      { label: 'Understand the mental impact of misinformation', action: () => { addMessage("Here’s some helpful advice:"); setButtons([{ label: '🌿 View Advice', action: () => { window.open("{{ url_for('main.advices', lang='en') }}", "_blank"); setButtons([{ label: 'Start Over 🔄', action: restart }]); } }, { label: 'Start Over 🔄', action: restart }]); } },
+      { label: 'Therapist Contact Numbers', action: therapistFlow }
+    ]);
+  }
+
+  function therapistFlow() {
+    addMessage("Would you like to:");
+    setButtons([
+      { label: '🏥 Visit Clinics (Egypt / KSA)', action: clinicFlow },
+      { label: '💻 Remote Communication', action: remoteFlow }
+    ]);
+  }
+
+  function clinicFlow() {
+    addMessage("Choose a location:");
+    setButtons([
+      { label: '🇪🇬 Egypt', action: () => { addMessage("Clinics in Egypt: Mirsah Clinic +20 111 2323330<br>Psy Care Clinic +20 120 7799988"); setButtons([{ label: 'Start Over 🔄', action: restart }]); } },
+      { label: '🇸🇦 KSA', action: () => { addMessage("Medicare Clinic Riyadh 9200 05531<br>Al Amal Complex Madinah 014 861 9200<br>Tamaneenah Medical Center Jeddah 053 521 2685"); setButtons([{ label: 'Start Over 🔄', action: restart }]); } }
+    ]);
+  }
+
+  function remoteFlow() {
+    addMessage("Online therapists: Tamaneenah +249 90 660 7664");
+    setButtons([{ label: 'Start Over 🔄', action: restart }]);
+  }
+
+  /** === English Decision-Making Flow === **/
+
+  function decisionFlow() {
+    addMessage("🕊️ Let's support your decision-making during the conflict.");
+    setButtons([
+      { label: '1️⃣ Movement & Safe Routes', action: safeRoutesFlow },
+      { label: '2️⃣ Available Hospitals', action: hospitalsFlow },
+      { label: '3️⃣ Humanitarian Supply Points', action: humanitarianFlow },
+      { label: '4️⃣ Medical Supply Points', action: medicalFlow }
+    ]);
+  }
+
+  function safeRoutesFlow() {
+    addMessage("Do you want instructions to facilitate your movement inside conflict areas, or see what others did before?");
+    setButtons([
+      { label: '🧭 Show Instructions', action: () => { window.open("{{ url_for('main.safe_routes', lang='en') }}", "_blank"); setButtons([{ label: 'Start Over 🔄', action: restart }]); } },
+      { label: '📖 See Others’ Stories', action: () => fetchAndShowStories('safe_routes') }
+    ]);
+  }
+
+  function hospitalsFlow() {
+    addMessage("Do you want names and numbers of hospitals, or see what others did before?");
+    setButtons([
+      { label: '🏥 Get Hospital Info', action: () => {
+          addMessage("Hospital status changes daily during the war, so please confirm before you travel:");
+          addMessage("• Call the hospital or your state Ministry of Health first.<br>• Ask your local Emergency Response Room or the Sudan Doctors Network.<br>• Check WHO Sudan updates: <a href='https://www.emro.who.int/countries/sdn/' target='_blank'>WHO Sudan</a><br>• You can also ask the <a href='{{ url_for('main.assistant_page', lang='en') }}'>AI Assistant</a>.");
+          setButtons([{ label: 'Start Over 🔄', action: restart }]);
+        }
+      },
+      { label: '📖 See Others’ Stories', action: () => fetchAndShowStories('hospitals') }
+    ]);
+  }
+
+  function humanitarianFlow() {
+    addMessage("Do you want steps to check if there’s a distribution point in your area, or see what others did before?");
+    setButtons([
+      { label: '📍 Check Distribution Steps', action: () => { window.open("{{ url_for('main.advices', lang='en') }}", "_blank"); setButtons([{ label: 'Start Over 🔄', action: restart }]); } },
+      { label: '📖 See Others’ Stories', action: () => fetchAndShowStories('humanitarian') }
+    ]);
+  }
+
+  function medicalFlow() {
+    addMessage("Do you want steps to check the place, or see what others did before?");
+    setButtons([
+      { label: '💊 Provide Pharmacist Contacts', action: () => {
+          addMessage("I can support you with pharmacist numbers who deliver medicines to your home. Do you want this service?");
+          setButtons([
+            { label: 'Yes', action: showPharmacists },
+            { label: 'No', action: restart }
+          ]);
+        }
+      },
+      { label: '📖 See Others’ Stories', action: () => fetchAndShowStories('medical') }
+    ]);
+  }
+
+  function showPharmacists() {
+    addMessage("This service is available in Khartoum, Omdurman, and Bahri:");
+    addMessage("• أمدرمان: صيدلية الشهيد نعمان — 0123166441<br>• صيدلية المعز — 01282823737<br>• الخرطوم: صيدلية مرتضى الهادي — 0917485000<br>• بحري: صيدلية نهى — 0965020683<br>• شركة دوائي توصيل داخل العاصمة الخرطوم — 0912341665<br>للاستفسار عن دواء معين أو منطقة معينة: <a href='https://t.me/wafradawaa' target='_blank'>Telegram</a>");
+    setButtons([{ label: 'Start Over 🔄', action: restart }]);
+  }
+
+  /** ===== ARABIC FLOWS ===== **/
+
+  function awarenessFlowAr() {
+    addMessage("❓ ما هي المعلومات المضللة؟");
+    addMessage("هي أي محتوى غير دقيق أو خاطئ يتم نشره سواء عن قصد أو بدون قصد، مما يؤدي إلى سوء فهم. تنتشر بسرعة في الأزمات لأنها تثير العواطف.");
+    setButtons([
+      { label: '📘 أنواع المعلومات المضللة', action: () => { window.open("{{ url_for('main.misinfo_type', lang='ar') }}", "_blank"); setButtons([{ label: 'التالي ➡️', action: awarenessNextAr }, { label: 'ابدأ من جديد 🔄', action: restart }]); } }
+    ]);
+  }
+
+  function awarenessNextAr() {
+    addMessage("هل واجهت معلومات مضللة من قبل؟");
+    setButtons([{ label: 'نعم', action: facedYesAr }, { label: 'لا', action: facedNoAr }]);
+  }
+
+  function facedYesAr() {
+    addMessage("يمكنك مشاركة قصتك هنا:");
+    setButtons([{ label: '📝 شارك قصتك', action: () => { window.open("{{ url_for('main.post', lang='ar') }}", "_blank"); setButtons([{ label: 'ابدأ من جديد 🔄', action: restart }]); } }]);
+  }
+
+  function facedNoAr() {
+    addMessage("يمكنك الاطلاع على ما يكتبه الصحفيون السودانيون:");
+    setButtons([{ label: 'عرض المقالات', action: showArticlesAr }, { label: 'ابدأ من جديد 🔄', action: restart }]);
+  }
+
+  function showArticlesAr() {
+    addMessage(`<a href="https://www.khmstashr.com/index.php?page=guideline&guideline_id=6" target="_blank">📰 المقال ١</a>`);
+    addMessage(`<a href="https://wasl.news" target="_blank">📰 المقال ٢</a>`);
+    setButtons([{ label: 'ابدأ من جديد 🔄', action: restart }]);
+  }
+
+  function mentalFlowAr() {
+    addMessage("💭 كيف يمكنني مساعدتك؟");
+    setButtons([
+      { label: 'تأثير المعلومات المضللة على النفس', action: () => { addMessage("إليك بعض النصائح:"); setButtons([{ label: '🌿 عرض النصائح', action: () => { window.open("{{ url_for('main.advices', lang='ar') }}", "_blank"); setButtons([{ label: 'ابدأ من جديد 🔄', action: restart }]); } }, { label: 'ابدأ من جديد 🔄', action: restart }]); } },
+      { label: 'أرقام المعالجين', action: therapistFlowAr }
+    ]);
+  }
+
+  function therapistFlowAr() {
+    addMessage("هل ترغب في:");
+    setButtons([
+      { label: '🏥 زيارة العيادات (مصر / السعودية)', action: clinicFlowAr },
+      { label: '💻 التواصل عن بعد', action: remoteFlowAr }
+    ]);
+  }
+
+  function clinicFlowAr() {
+    addMessage("اختر الدولة:");
+    setButtons([
+      { label: '🇪🇬 مصر', action: () => { addMessage("عيادة مرساة: +20 111 2323330<br>ساي كير: +20 120 7799988"); setButtons([{ label: 'ابدأ من جديد 🔄', action: restart }]); } },
+      { label: '🇸🇦 السعودية', action: () => { addMessage("ميدي كير الرياض: 9200 05531<br>مجمع الأمل المدينة: 014 861 9200<br>مطمئنة جدة: 053 521 2685"); setButtons([{ label: 'ابدأ من جديد 🔄', action: restart }]); } }
+    ]);
+  }
+
+  function remoteFlowAr() {
+    addMessage("طمأنينة للاستشارات النفسية عن بعد +249 90 660 7664");
+    setButtons([{ label: 'ابدأ من جديد 🔄', action: restart }]);
+  }
+
+  /** === Arabic Decision-Making Flow === **/
+
+  function decisionFlowAr() {
+    addMessage("🕊️ دعنا نساعدك في اتخاذ القرار أثناء النزاع.");
+    setButtons([
+      { label: '1️⃣ الحركة والمسارات الآمنة', action: safeRoutesFlowAr },
+      { label: '2️⃣ المستشفيات المتاحة', action: hospitalsFlowAr },
+      { label: '3️⃣ نقاط توزيع المساعدات', action: humanitarianFlowAr },
+      { label: '4️⃣ نقاط توزيع الأدوية', action: medicalFlowAr }
+    ]);
+  }
+
+  function safeRoutesFlowAr() {
+    addMessage("هل ترغب في الحصول على تعليمات لتسهيل حركتك داخل مناطق النزاع، أم معرفة ما فعله الآخرون؟");
+    setButtons([
+      { label: '📍 تعليمات الحركة', action: () => { window.open("{{ url_for('main.safe_routes', lang='ar') }}", "_blank"); setButtons([{ label: 'ابدأ من جديد 🔄', action: restart }]); } },
+      { label: '📖 ما فعله الآخرون', action: () => fetchAndShowStories('safe_routes') }
+    ]);
+  }
+
+  function hospitalsFlowAr() {
+    addMessage("هل ترغب في معرفة أسماء وأرقام المستشفيات أم معرفة ما فعله الآخرون؟");
+    setButtons([
+      { label: '🏨 الحصول على أسماء وأرقام', action: () => {
+          addMessage("وضع المستشفيات يتغير يوميًا أثناء الحرب، لذلك تأكد قبل التحرك:");
+          addMessage("• اتصل بالمستشفى أو وزارة الصحة في ولايتك أولًا.<br>• اسأل غرفة الطوارئ في منطقتك أو شبكة أطباء السودان.<br>• تابع تحديثات منظمة الصحة العالمية: <a href='https://www.emro.who.int/countries/sdn/' target='_blank'>WHO Sudan</a><br>• يمكنك أيضًا سؤال <a href='{{ url_for('main.assistant_page', lang='ar') }}'>المساعد الذكي</a>.");
+          setButtons([{ label: 'ابدأ من جديد 🔄', action: restart }]);
+        } },
+      { label: '📖 ما فعله الآخرون', action: () => fetchAndShowStories('hospitals') }
+    ]);
+  }
+
+  function humanitarianFlowAr() {
+    addMessage("هل ترغب في خطوات للتحقق من نقطة التوزيع في منطقتك، أم معرفة ما فعله الآخرون؟");
+    setButtons([
+      { label: '📦 التحقق من التوزيع', action: () => { window.open("{{ url_for('main.advices', lang='ar') }}", "_blank"); setButtons([{ label: 'ابدأ من جديد 🔄', action: restart }]); } },
+      { label: '📖 ما فعله الآخرون', action: () => fetchAndShowStories('humanitarian') }
+    ]);
+  }
+
+  function medicalFlowAr() {
+    addMessage("هل ترغب في خطوات للتحقق من المكان الذي تود الذهاب إليه، أم معرفة ما فعله الآخرون؟");
+    setButtons([
+      { label: '💬 خطوات التحقق', action: () => {
+          addMessage("يمكنني دعمك بأرقام صيادلة لتوصيل الأدوية. هل ترغب في هذه الخدمة؟");
+          setButtons([
+            { label: 'نعم', action: showPharmacistsAr },
+            { label: 'لا', action: restart }
+          ]);
+        } },
+      { label: '📖 ما فعله الآخرون', action: () => fetchAndShowStories('medical') }
+    ]);
+  }
+
+  function showPharmacistsAr() {
+    addMessage("الخدمة متاحة في الخرطوم، أمدرمان، وبحري:");
+    addMessage("• أمدرمان: صيدلية الشهيد نعمان — 0123166441<br>• صيدلية المعز — 01282823737<br>• الخرطوم: صيدلية مرتضى الهادي — 0917485000<br>• بحري: صيدلية نهى — 0965020683<br>• شركة دوائي للتوصيل داخل الخرطوم — 0912341665<br>للاستفسارات: <a href='https://t.me/wafradawaa' target='_blank'>Telegram</a>");
+    setButtons([{ label: 'ابدأ من جديد 🔄', action: restart }]);
+  }
+
+  // Re-use this for both languages
+  function fetchAndShowStories(type) {
+    addMessage("…");
+    fetch(`/get_stories/${encodeURIComponent(type)}`)
+      .then(resp => resp.json())
+      .then(data => {
+        if (data && data.length > 0) {
+          data.forEach(s => {
+            addMessage(`🗣️ ${esc(s.content)}`);
+          });
+        } else {
+          addMessage(currentLang === 'en' ? "No stories found yet for this topic." : "لم تُسجّل قصص بعد في هذا القسم.");
+        }
+        addMessage(currentLang === 'en'
+          ? "Do you want to see more stories about other topics?"
+          : "هل ترغب في رؤية المزيد من قصص حول مواضيع أخرى؟");
+        setButtons([
+          { label: currentLang === 'en' ? 'Yes' : 'نعم', action: () => window.open("{{ url_for('main.posts_list', lang=lang) }}", "_blank") },
+          { label: currentLang === 'en' ? 'No, Start Over 🔄' : 'لا، ابدأ من جديد 🔄', action: restart }
+        ]);
+      })
+      .catch(e => {
+        console.error(e);
+        addMessage(currentLang === 'en' ? "Error loading stories." : "خطأ في تحميل القصص.");
+        setButtons([{ label: currentLang === 'en' ? 'Start Over 🔄' : 'ابدأ من جديد 🔄', action: restart }]);
+      });
+  }
+
+  // Kick off
+  startConversation();
+});
+</script>
+
+
+{% endblock %}

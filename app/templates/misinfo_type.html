@@ -1,0 +1,328 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+body {
+  background-color: #f5f2e9;
+  font-family: 'Cairo', 'Tajawal', sans-serif;
+  color: #222;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0;
+}
+
+/* Section Box Styling */
+.misinfo-section {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem;
+  margin-bottom: 2.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.misinfo-section:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Headings */
+.section-header {
+  color: #d17a22;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+}
+
+/* Links */
+a.article-link {
+  color: #b3560f;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+a.article-link:hover {
+  color: #d17a22;
+  text-decoration: underline;
+}
+
+/* Lists */
+.list-points {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list-points li {
+  background: #f8f8f8;
+  margin-bottom: 10px;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border-right: 4px solid #e43e3e;
+  font-size: 1.05rem;
+}
+
+.list-points li strong {
+  color: #b32727;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .misinfo-section {
+    padding: 20px;
+  }
+  .section-header {
+    font-size: 1.2rem;
+  }
+  p, .list-points li {
+    font-size: 0.98rem;
+  }
+}
+</style>
+
+<div class="container py-5" {% if lang == 'ar' %} dir="rtl" {% else %} dir="ltr" {% endif %}>
+
+  <!-- Title -->
+  <div class="text-center mb-5">
+    {% if lang == "ar" %}
+      <h2 class="fw-bold text-dark">أنواع المعلومات المضللة ومخاطرها</h2>
+    {% else %}
+      <h2 class="fw-bold text-dark">Types and Dangers of Misinformation</h2>
+    {% endif %}
+  </div>
+
+  <!-- Section 1 -->
+  <div class="misinfo-section">
+    {% if lang == "ar" %}
+      <h4 class="section-header">ما المقصود ب "معلومة مضللة"؟ وهل واجهتك من قبل؟</h4>
+      <p>
+        تُعرَّف المعلومة المضلِّلة بأنها أي محتوى غير دقيق أو غير صحيح يُنشر أو يُتداول، سواء كان ذلك عن قصد أو عن غير قصد، ويؤدي إلى تكوين فهم خاطئ لدى الأفراد أو الجمهور.
+        وغالبًا ما تنتشر المعلومات المضللة بسرعة عبر وسائل الإعلام ووسائل التواصل الاجتماعي، خاصة في أوقات الأزمات أو النزاعات، نظرًا لتأثيرها العاطفي وسهولة مشاركتها دون التحقق من صحتها.
+      </p>
+    {% else %}
+      <h4 class="section-header">What Does "Misinformation" Mean? Have You Encountered It Before?</h4>
+      <p>
+        Misinformation means any false or inaccurate content that is published or shared — whether intentionally or not — and leads people to misunderstand something.
+        It spreads very fast through social media and news outlets, especially during times of crisis or war, because it triggers emotions and is easy to share without checking its truth.
+      </p>
+    {% endif %}
+  </div>
+
+  <!-- Section 2 -->
+  <div class="misinfo-section">
+    {% if lang == "ar" %}
+      <h4 class="section-header">المعلومات المضللة كأداة في الحروب</h4>
+      <p>
+        تشكل المعلومات المضللة أحد أخطر الأسلحة غير المرئية في الحروب الحديثة، لا سيما في حرب السودان، حيث أصبحت الكلمة والصورة والفيديو أدوات مؤثرة لا تقل فتكًا عن الرصاص والقذائف.
+        هذا النوع من الحروب المعلوماتية لا يكتفي بنشر الأكاذيب، بل يستغل العواطف والمخاوف لتفكيك النسيج الاجتماعي وزرع الشك بين المواطنين، فيضعف الثقة بالمصادر الرسمية، ويجعل من الصعب تمييز الحقيقة عن التضليل.
+        يمكنكم قراءة المقال الكامل هنا:
+        <a href="https://aawsat.com/%D8%A7%D9%84%D8%B1%D8%A3%D9%8A/5104196-%D8%A3%D8%AE%D8%B7%D8%B1-%D8%B3%D9%84%D8%A7%D8%AD-%D9%81%D9%8A-%D8%AD%D8%B1%D8%A8-%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D9%86"
+         target="_blank" class="article-link">أخطر سلاح في حرب السودان - عثمان ميرغني</a>.
+      </p>
+    {% else %}
+      <h4 class="section-header">Misinformation as a Tool in Warfare</h4>
+      <p>
+        Misinformation has become one of the most dangerous invisible weapons in modern wars — especially in Sudan — where words, images, and videos are as powerful as bullets and bombs.
+        This type of information war does more than spread lies; it uses emotions and fear to divide communities and weaken trust in official sources, making it harder for people to know what is true.
+        You can read the full article here:
+        <a href="https://aawsat.com/%D8%A7%D9%84%D8%B1%D8%A3%D9%8A/5104196-%D8%A3%D8%AE%D8%B7%D8%B1-%D8%B3%D9%84%D8%A7%D8%AD-%D9%81%D9%8A-%D8%AD%D8%B1%D8%A8-%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D9%86"
+         target="_blank" class="article-link">The Most Dangerous Weapon in Sudan’s War – Othman Mirghani</a>.
+      </p>
+    {% endif %}
+  </div>
+
+  <!-- Section 3 -->
+  <section class="misinfo-section">
+    {% if lang == "ar" %}
+      <h4 class="fw-bold mb-4" style="color:#d17a22;">أنواع المعلومات المضللة</h4>
+      <p>هنالك أربع أنواع للمعلومات المضللة:</p>
+
+      <div class="type-box mb-4 p-3 rounded-3 border-start border-4 border-warning">
+        <h5 class="fw-bold mb-2">١. المعلومات غير الدقيقة غير المقصودة (Misinformation):</h5>
+        <p>
+          وهي معلومات خاطئة يتم تداولها دون نية خبيثة، وغالبًا ما تنتج عن سوء الفهم أو غياب التحقق من المصدر قبل النشر. 
+          فعلى سبيل المثال، قد يشارك شخص خبرًا قديمًا أو إشاعة دون أن يدرك أنها غير صحيحة. 
+          رغم أن الهدف لا يكون التضليل، فإن تأثير هذه المعلومات قد يكون خطيرًا، إذ يمكن أن تثير الذعر أو تؤدي إلى قرارات خاطئة، 
+          خاصة في أوقات الأزمات الصحية أو الأمنية.
+        </p>
+      </div>
+
+      <div class="type-box mb-4 p-3 rounded-3 border-start border-4 border-danger">
+        <h5 class="fw-bold mb-2">٢. المعلومات الزائفة المتعمدة (Disinformation):</h5>
+        <p>
+          وهي أخطر أنواع المعلومات المضللة، لأنها تُصنع وتُنشر عن قصد بهدف خداع الناس أو التلاعب بآرائهم، 
+          وغالبًا ما تُستخدم لأغراض سياسية أو دعائية أو اقتصادية. 
+          على سبيل المثال، قد تقوم جهة معينة بنشر أخبار كاذبة عن الانتصارات العسكرية أو قرارات حكومية وهمية 
+          بهدف التأثير على الروح المعنوية أو زعزعة الثقة في مؤسسات الدولة. 
+          هذه النوعية من المعلومات تعتمد عادة على أساليب مدروسة في الصياغة لجعلها تبدو موثوقة، مثل استخدام صور أو اقتباسات مزيفة أو نسب الأخبار لمصادر غير حقيقية.
+        </p>
+      </div>
+
+      <div class="type-box mb-4 p-3 rounded-3 border-start border-4 border-success">
+        <h5 class="fw-bold mb-2">٣. المعلومات الضارة (Malinformation):</h5>
+        <p>
+          وهي معلومات صحيحة في جوهرها لكنها تُستخدم بطريقة تضر بالأفراد أو الجماعات أو المؤسسات. 
+          مثل تسريب صور أو وثائق خاصة أو نشر حقائق خارج سياقها بهدف التشهير أو الانتقام. 
+          يعتمد هذا النوع على استغلال الحقيقة كسلاح لإيذاء الآخرين، مما يجعله من أكثر أشكال التضليل خفاءً وتأثيرًا في سمعة الأشخاص والمؤسسات.
+        </p>
+      </div>
+
+      <div class="type-box p-3 rounded-3 border-start border-4 border-primary">
+        <h5 class="fw-bold mb-2">٤. المعلومات المضللة بصريًا:</h5>
+        <p>
+          تشمل الصور أو مقاطع الفيديو التي يتم تعديلها أو اقتطاعها أو إخراجها من سياقها لتوجيه رسالة مضللة. 
+          يمكن استخدام صورة من مكان أو زمان مختلف للإيحاء بأنها حدثت في سياق معين. 
+          ومع تطور تقنيات الذكاء الاصطناعي، أصبحت هذه الظاهرة أكثر خطورة خاصة مع ظهور "الديب فيك" (Deepfake) — 
+          وهو إنشاء مقاطع فيديو مزيفة يصعب تمييزها عن الحقيقة وهذا ما تعرض له المواطنون منذ بداية النزاع.
+        </p>
+      </div>
+
+    {% else %}
+      <h4 class="fw-bold mb-4" style="color:#d17a22;">Types of Misinformation</h4>
+      <p>There are four main types of misinformation:</p>
+
+      <div class="type-box mb-4 p-3 rounded-3 border-start border-4 border-warning">
+        <h5 class="fw-bold mb-2">1. Unintentional Inaccurate Information (Misinformation):</h5>
+        <p>
+          This is false information that spreads without bad intentions. It often happens because people don’t check the facts before sharing.  
+          For example, someone might share an old or incorrect post without realizing it’s not true.  
+          Even if it wasn’t meant to deceive, it can cause panic and confusion, especially in health or safety situations.
+        </p>
+      </div>
+
+      <div class="type-box mb-4 p-3 rounded-3 border-start border-4 border-danger">
+        <h5 class="fw-bold mb-2">2. Deliberate False Information (Disinformation):</h5>
+        <p>
+          This is the most dangerous kind because it’s created intentionally to mislead or manipulate people.  
+          It’s often used for political, propaganda, or economic reasons.  
+          For example, a group might spread fake news about victories or government actions to confuse or demoralize people.  
+          It’s usually made to look believable, using fake images, quotes, or made-up sources.
+        </p>
+      </div>
+
+      <div class="type-box mb-4 p-3 rounded-3 border-start border-4 border-success">
+        <h5 class="fw-bold mb-2">3. Harmful Information (Malinformation):</h5>
+        <p>
+          This is real information used in a harmful way — for example, leaking private photos or documents or using real facts out of context to damage someone’s reputation.  
+          It turns truth into a weapon, which makes it a very subtle but powerful form of harm.
+        </p>
+      </div>
+
+      <div class="type-box p-3 rounded-3 border-start border-4 border-primary">
+        <h5 class="fw-bold mb-2">4. Visual Misinformation:</h5>
+        <p>
+          This includes edited or cropped photos and videos used to mislead people.  
+          For instance, an image from a different time or place might be shared to tell a false story.  
+          With the growth of AI, this has become more dangerous through “deepfakes” — fake videos that look completely real — something many civilians faced since the conflict began.
+        </p>
+      </div>
+    {% endif %}
+  </section>
+
+  <!-- Section 4 -->
+  <div class="misinfo-section">
+    {% if lang == "ar" %}
+      <h4 class="section-header">المخاطر النفسية والجسدية للمعلومات المضللة</h4>
+      <p>
+        تكمن خطورة المعلومات المضللة في تأثيرها النفسي والجسدي على المدنيين. فعلى الصعيد النفسي، تؤدي كثرة الشائعات والأخبار الزائفة إلى القلق الجماعي، والإجهاد المستمر، وحالات من الهلع والارتباك، خاصة عندما تتعلق المعلومات بحياة الناس اليومية، مثل أخبار عن “مناطق آمنة” أو “ممرات إنسانية” وهمية. أما جسديًا، فإن هذه المعلومات قد تدفع الناس إلى قرارات كارثية، مثل التحرك نحو مناطق خطرة أو الابتعاد عن مراكز المساعدة، مما يعرضهم للموت أو الإصابة. كذلك، فإن انتشار الأكاذيب حول الأدوية أو المساعدات الطبية يهدد الصحة العامة ويزيد من حجم الكارثة الإنسانية.
+      </p>
+      <p>
+        وفي سياق حرب السودان، أصبحت هذه الظاهرة أكثر تعقيدًا بسبب غياب مؤسسات إعلامية موثوقة وانقطاع الاتصالات في بعض المناطق، مما فتح المجال أمام فوضى المعلومات. وهكذا، فإن المعلومات المضللة لا تقتل بالسلاح، بل تفتك بالثقة والعقل والوعي، وتزرع الخوف والانقسام بين الناس، لتصبح بالفعل — كما وصفها الكاتب عثمان ميرغني — “أخطر سلاح في حرب السودان”.
+        يمكنكم قراءة المقال كامل هنا: 
+        <a href="https://www.alarabiya.net/sudan/2023/09/25/%D8%A3%D8%AE%D8%B7%D8%B1-%D8%B3%D9%84%D8%A7%D8%AD-%D9%81%D9%8A-%D8%AD%D8%B1%D8%A8-%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D9%86-%D9%80-%D8%B9%D8%AB%D9%85%D8%A7%D9%86-%D9%85%D9%8A%D8%B1%D8%BA%D9%86%D9%8A.html"
+         target="_blank" class="article-link">
+         أخطر سلاح في حرب السودان - عثمان ميرغني
+      </a>.
+      </p>
+      <p>يمكن توضيح المخاطر ضمن مدى قصير ومدى طويل:</p>
+    {% else %}
+      <h4 class="section-header">Psychological and Physical Risks of Misinformation</h4>
+      <p>
+        The danger of misinformation lies in its psychological and physical impact on civilians. Psychologically, false news and rumors cause collective anxiety, stress, panic, and confusion — especially when they relate to people’s safety, such as fake claims about “safe zones” or “humanitarian corridors.”  
+        Physically, misinformation can lead people to take dangerous actions, like moving into unsafe areas or avoiding real aid centers, which can result in injury or death.  
+        False medical information also threatens public health and worsens humanitarian crises.
+      </p>
+      <p>
+        In Sudan’s war, this problem grew worse because of weak media institutions and communication blackouts, creating a perfect environment for chaos and false information.  
+        As writer Othman Mirghani described, misinformation kills not with weapons but by destroying trust, awareness, and unity — truly becoming “the most dangerous weapon in Sudan’s war.”
+        Read the full article here:
+        <a href="https://www.alarabiya.net/sudan/2023/09/25/%D8%A3%D8%AE%D8%B7%D8%B1-%D8%B3%D9%84%D8%A7%D8%AD-%D9%81%D9%8A-%D8%AD%D8%B1%D8%A8-%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D9%86-%D9%80-%D8%B9%D8%AB%D9%85%D9%86-%D9%85%D9%8A%D8%B1%D8%BA%D9%86%D9%8A.html"
+         target="_blank" class="article-link">
+         The Most Dangerous Weapon in Sudan’s War – Othman Mirghani
+      </a>.
+      </p>
+      <p>These risks can be short-term or long-term:</p>
+    {% endif %}
+  </div>
+
+  <!-- Section 5 -->
+  <div class="misinfo-section">
+    {% if lang == "ar" %}
+      <h4 class="section-header">أولًا: المخاطر قصيرة المدى</h4>
+      <p>وهي التأثيرات التي تظهر بسرعة بعد انتشار المعلومات المضللة خلال النزاع، وتشمل:</p>
+      <ul class="list-points">
+        <li><strong>الارتباك والفوضى المعلوماتية:</strong> يؤدي انتشار الأخبار الكاذبة إلى تضارب في المعلومات، ما يجعل المدنيين عاجزين عن اتخاذ قرارات صحيحة حول النزوح، أو البحث عن المأوى، أو الوصول إلى المساعدات</li>
+        <li><strong>الذعر الجماعي وفقدان السيطرة:</strong>
+     تنتشر الشائعات حول “هجمات وشيكة” أو “مجازر قريبة” فتسبب هلعًا جماعيًا يدفع الناس للفرار أو التجمهر، مما يزيد من الإصابات والفوضى وعلى سبيل المثال ماتم تداوله في بدايه الحرب عن مقتل قائد قوات الدعم السريع محمد حمدان دقلو - حميدتي – مما تبين لاحقا انها مجرد معلومه مضلله.                 توجد دراسه كامله حول الاثر النفسي للمعلومات المضلله في حرب السودان
+        <a href="https://sudalytica.beamreports.com/%D8%A7%D9%84%D8%A3%D8%AB%D8%B1-%D8%A7%D9%84%D9%86%D9%81%D8%B3%D9%8A-%D9%84%D9%84%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D9%85%D8%B6%D9%84%D9%84%D8%A9-%D9%85%D9%88%D8%AA-%D8%AD/"
+         target="_blank" class="article-link">
+         الاثر النفسي للمعلومات المضلله "موت حميدتي" نمودجا 
+      </a>.
+        <li><strong>تضليل القرارات الإنسانية:</strong>كثير من الأسر تتخذ قرارات بناءً على معلومات غير دقيقة عن مناطق “آمنة” أو “مفتوحة”، فتقع ضحية للأعمال العسكرية أو انقطاع الإمدادات.</li>
+      </ul>
+    {% else %}
+      <h4 class="section-header">1. Short-Term Risks</h4>
+      <p>These are effects that appear quickly after misinformation spreads, including:</p>
+      <ul class="list-points">
+        <li><strong>Confusion and chaos:</strong> The spread of false news leads to conflicting information, leaving civilians unable to make correct decisions about displacement, seeking shelter, or accessing aid.</li>
+        <li><strong>Mass panic and loss of control:</strong> Rumors about “imminent attacks” or “nearby massacres” spread, causing mass panic that drives people to flee or gather in crowds, increasing injuries and chaos. For example, at the beginning of the war, there were rumors about the death of Rapid Support Forces leader Mohamed Hamdan Dagalo - Hemeti - which later turned out to be false information. There is a full study on the psychological impact of misinformation in the Sudan war: <a href="https://sudalytica.beamreports.com/%D8%A7%D9%84%D8%A3%D8%AB%D8%B1-%D8%A7%D9%84%D9%86%D9%81%D8%B3%D9%8A-%D9%84%D9%84%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A7%D8%AA-%D8%A7%D9%84%D9%85%D8%B6%D9%84%D9%84%D8%A9-%D9%85%D9%88%D8%AA-%D8%AD/" target="_blank" class="article-link">The psychological impact of misinformation: "Hemeti's death" as a case study</a>.
+        <li><strong>Misguidance of humanitarian decisions:</strong> Many families make decisions based on inaccurate information about 'safe' or 'open' areas, becoming victims of military operations or supply disruptions.</li>
+      </ul>
+    {% endif %}
+  </div>
+
+  <!-- Section 6 -->
+  <div class="misinfo-section">
+    {% if lang == "ar" %}
+      <h4 class="section-header">ثانيًا: المخاطر طويلة المدى</h4>
+      <p>وهي التأثيرات التي تستمر حتى بعد انتهاء الحرب وتشمل:</p>
+      <ul class="list-points">
+        <li><strong>تآكل الثقة المجتمعية:</strong> تؤدي المعلومات المضللة إلى فقدان الثقة بين المواطنين، وبينهم وبين الإعلام والمؤسسات الحكومية، ما يعرقل جهود إعادة الإعمار والسلام.</li>
+        <li><strong> استمرار الصدمات النفسية :</strong> الخوف والقلق الناتجان عن الشائعات والحرب يتركان آثارًا نفسية طويلة الأمد مثل اضطراب ما بعد الصدمة (PTSD)، والشك الدائم في الأخبار والمصادر.</li>
+        <li><strong>انقسام المجتمع واستدامة الكراهية  :</strong>إذ تُستخدم المعلومات المضللة لبث الانقسام القبلي والعرقي، ما يُبقي النزاعات الاجتماعية مشتعلة حتى بعد توقف القتال.</li>
+        <li><strong>تراجع الوعي الإعلامي بسبب التضليل المعلوماتي :</strong> 
+          الاعتياد على بيئة مليئة بالأكاذيب يجعل المجتمع أقل قدرة على التمييز بين الحقيقة والزيف مستقبلًا، ما يُضعف الثقافة النقدية. استعرض الكاتب الصحفي فيصل محمد صالح في احدى مقالاته في جريده الشرق الاوسط مشكله التضليل الاعلامي واثره على سرديات حرب السودان وتوثيقها يمكن قراءتها من هنا 
+        <a href="https://aawsat.com/%D8%A7%D9%84%D8%B1%D8%A3%D9%8A/5143952-%D8%A7%D9%84%D8%B3%D8%B1%D8%AF%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%85%D8%B6%D9%84%D9%84%D8%A9-%D9%81%D9%8A-%D8%AD%D8%B1%D8%A8-%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D9%86-%D8%AD%D9%83%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%BA%D8%B2%D9%88-%D8%A7%D9%84%D8%A3%D8%AC%D9%86%D8%A8%D9%8A"
+         target="_blank" class="article-link">
+        السرديات المضللة في حرب السودان  
+      </a>
+        </li>
+         <li><strong>تأثير اقتصادي واجتماعي دائم :</strong> ضعف الثقة يؤدي إلى عزوف المستثمرين والمنظمات عن العمل داخل البلاد، ويعرقل التعافي الاقتصادي والاجتماعي.</li>
+         <li><strong> تشويه التاريخ والذاكرة الوطنية :</strong>عندما تظل المعلومات الكاذبة متداولة بعد الحرب، فإنها تكتب “رواية مزيفة” للتاريخ، وتشوه الوعي الجمعي للأجيال القادمة.</li>
+        
+      </ul>
+    {% else %}
+      <h4 class="section-header">2. Long-Term Risks</h4>
+      <p>These effects last even after the conflict ends and include:</p>
+      <ul class="list-points">
+        <li><strong>Erosion of trust:</strong> Misinformation leads to a loss of trust among citizens, and between them and the media and government institutions, which hinders efforts for reconstruction and peace.</li>
+        <li><strong>Continuing psychological trauma::</strong> Fear and anxiety resulting from rumors and war leave long-term psychological effects such as post-traumatic stress disorder (PTSD) and constant doubt in the news and sources.</li>
+        <li><strong>Division of society and the perpetuation of hatred:</strong> Misleading information is used to sow tribal and ethnic division, keeping social conflicts alive even after the fighting has ceased.</li>
+        <li><strong>Decline of media awareness due to misinformation:</strong>
+Getting accustomed to an environment filled with lies makes society less capable of distinguishing between truth and falsehood in the future, which weakens critical thinking. Journalist Faisal Mohammed Saleh discussed the problem of media misinformation and its impact on the narratives of the Sudan war and their documentation in one of his articles in Al-Sharq Al-Awsat newspaper, which can be read here
+<a href="https://aawsat.com/%D8%A7%D9%84%D8%B1%D8%A3%D9%8A/5143952-%D8%A7%D9%84%D8%B3%D8%B1%D8%AF%D9%8A%D8%A7%D8%AA-%D8%A7%D9%84%D9%85%D8%B6%D9%84%D9%84%D8%A9-%D9%81%D9%8A-%D8%AD%D8%B1%D8%A8-%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D9%86-%D8%AD%D9%83%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%BA%D8%B2%D9%88-%D8%A7%D9%84%D8%A3%D8%AC%D9%86%D8%A8%D9%8A" target="_blank" class="article-link">
+Misleading narratives in the Sudan war
+</a>
+</li>
+<li><strong>A lasting economic and social impact:</strong> Lack of trust leads investors and organizations to refrain from operating within the country, and hinders economic and social recovery.</li>
+<li><strong>Distortion of history and national memory:</strong>  When false information continues to circulate after the war, it writes a 'fake narrative' of history and distorts the collective consciousness of future generations.</li>
+</ul>
+    {% endif %}
+  </div>
+
+</div>
+
+{% endblock %}

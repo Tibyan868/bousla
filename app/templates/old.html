@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+
+  <!-- Header Section -->
+  <div class="text-center mb-5">
+    <h2 class="fw-bold gradient-text">
+      {% if lang == 'en' %}
+        A Guide to Dealing with Children and the Elderly Amid the Spread of Misinformation During Wars
+      {% else %}
+        دليل التعامل مع الأطفال وكبار السن في ظل انتشار المعلومات المضلِّلة أثناء الحروب
+      {% endif %}
+    </h2>
+    <p class="lead text-muted mt-3 px-md-5">
+      {% if lang == 'en' %}
+        Learn how to protect emotional wellbeing and build resilience among children and the elderly during times of conflict and misinformation.
+      {% else %}
+        تعلّم كيف تحمي التوازن النفسي وتعزز الوعي لدى الأطفال وكبار السن في أوقات الحرب وانتشار الأخبار المضلِّلة.
+      {% endif %}
+    </p>
+  </div>
+
+  <!-- Hero Image -->
+  <div class="text-center mb-5 position-relative">
+    <img src="{{ url_for('static', filename='img/old.jpg') }}" 
+         alt="Children and Elderly"
+         class="img-fluid rounded shadow-lg hover-img hero-img">
+    <div class="image-overlay"></div>
+  </div>
+
+  <!-- Main Guide Section -->
+  <div class="guide-card mx-auto p-4 p-md-5 shadow-sm"
+       dir="{% if lang == 'ar' %}rtl{% else %}ltr{% endif %}">
+
+    {% if lang == 'en' %}
+      <h4 class="fw-bold section-title">First: General Principles</h4>
+      <ul>
+        <li><b>Calmness is the Basis of Safety:</b> Reactions should be calm and reassuring, as anxiety easily spreads to children and the elderly.</li>
+        <li><b>Truth within Understanding:</b> Tell the truth in a way that suits their level of comprehension, without painful details.</li>
+        <li><b>Set Specific Times for News:</b> Limit exposure to verified sources at fixed times.</li>
+        <li><b>Do Not Spread Rumors:</b> Verify before sharing any news.</li>
+        <li><b>Maintain Daily Routine:</b> Routine builds a sense of safety and stability.</li>
+        <li><b>Promote Critical Thinking:</b> Teach that emotions aren’t proof of truth.</li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <h4 class="fw-bold section-title">Second: Dealing with Children</h4>
+      <p><b>From Birth to 5 Years:</b> Keep discussions simple, comforting, and free of war details. Provide physical reassurance and consistency in daily routines.</p>
+      <p><b>From 6 to 12 Years:</b> Allow questions, explain calmly, and teach them how to identify trusted sources.</p>
+      <p><b>Teenagers (13–18 Years):</b> Communicate openly, encourage critical thinking, and support positive digital behavior.</p>
+
+      <div class="divider"></div>
+
+      <h4 class="fw-bold section-title">Third: Dealing with the Elderly</h4>
+      <ul>
+        <li>Address them with patience and empathy.</li>
+        <li>Help them follow reliable official sources only.</li>
+        <li>Provide written reminders in visible places.</li>
+        <li>Check on their emotional state regularly.</li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <h4 class="fw-bold section-title">Fourth: Positive Communication</h4>
+      <p>Use gentle, reassuring words that calm fear and build trust.</p>
+      <blockquote>"We are always together; if you hear something scary, tell me immediately."</blockquote>
+
+      <div class="divider"></div>
+
+      <h4 class="fw-bold section-title">Fifth: When to Seek Professional Help</h4>
+      <ul>
+        <li>Prolonged sleep or appetite issues</li>
+        <li>Isolation, fear, or aggression</li>
+        <li>Confusion or loss of orientation</li>
+      </ul>
+
+    {% else %}
+      <h4 class="fw-bold section-title">أولًا: المبادئ العامة</h4>
+      <ul>
+        <li><b>الهدوء أساس الأمان:</b> يجب أن تكون ردود الأفعال هادئة لأن القلق ينتقل بسهولة للأطفال وكبار السن.</li>
+        <li><b>الصدق بحدود الفهم:</b> قولي الحقيقة بما يناسب مستوى الإدراك دون تفاصيل مؤلمة.</li>
+        <li><b>تحديد أوقات لمتابعة الأخبار:</b> مرتين يوميًا ومن مصادر رسمية فقط.</li>
+        <li><b>عدم نشر الشائعات:</b> تحقّقي قبل مشاركة أي خبر.</li>
+        <li><b>المحافظة على الروتين اليومي:</b> يمنح الشعور بالأمان والاستقرار.</li>
+        <li><b>تعزيز التفكير النقدي:</b> ليس كل ما يُنشر حقيقيًا.</li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <h4 class="fw-bold section-title">ثانيًا: التعامل مع الأطفال</h4>
+      <p><b>من الولادة حتى 5 سنوات:</b> تجنّبي الحديث عن تفاصيل الحرب، وقدّمي الحنان والاحتضان.</p>
+      <p><b>من 6 إلى 12 سنة:</b> دعي الطفل يسأل بحرية واشرحي الفرق بين الشائعة والخبر الصحيح.</p>
+      <p><b>المراهقون (13–18 سنة):</b> تحاوري معهم بصراحة، وعلّميهم التحقّق من المصادر.</p>
+
+      <div class="divider"></div>
+
+      <h4 class="fw-bold section-title">ثالثًا: التعامل مع كبار السن</h4>
+      <ul>
+        <li>خاطبيهم بلطف واحترام.</li>
+        <li>حددي لهم مصادر رسمية واضحة.</li>
+        <li>ضعي ملاحظات مكتوبة بخط كبير.</li>
+        <li>راقبي سلوكهم وتغيراتهم النفسية.</li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <h4 class="fw-bold section-title">رابعًا: التواصل الإيجابي</h4>
+      <blockquote class="text-end">"نحن معًا دائمًا، وإذا سمعت شيئًا يخيفك، تعال وأخبرني فورًا."</blockquote>
+
+      <div class="divider"></div>
+
+      <h4 class="fw-bold section-title">خامسًا: متى نلجأ للمختصين؟</h4>
+      <ul>
+        <li>اضطرابات النوم أو الشهية لفترات طويلة.</li>
+        <li>الخوف المفرط أو العزلة.</li>
+        <li>الارتباك أو النسيان المفاجئ.</li>
+      </ul>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Styles -->
+<style>
+
+.hero-img {
+  border-radius: 20px;
+  transition: transform 0.8s ease, filter 0.8s ease;
+}
+.hero-img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.15);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 70%, rgba(255,250,245,0.8));
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.guide-card {
+  background: #fffdfa;
+  border-radius: 20px;
+  border: 1px solid #f3e1d3;
+  max-width: 900px;
+}
+
+.section-title {
+  color: #d76e41;
+  border-left: 5px solid #d76e41;
+  padding-left: 10px;
+}
+
+ul {
+  padding-left: 1.5rem;
+  margin-top: 0.8rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+blockquote {
+  background: #fff2ea;
+  border-left: 5px solid #d76e41;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  font-style: italic;
+  color: #7a4b2e;
+  margin-top: 1rem;
+  font-size: 1.05rem;
+}
+
+.divider {
+  border-top: 1px dashed #f0bfa2;
+  margin: 2rem 0;
+}
+
+.guide-card p, .guide-card li {
+  font-size: 1.05rem;
+  color: #444;
+  line-height: 1.8;
+}
+</style>
+{% endblock %}

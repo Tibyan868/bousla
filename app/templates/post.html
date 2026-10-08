@@ -1,0 +1,413 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+  /* 🌿 Background & General Style */
+  body {
+    background: linear-gradient(135deg, #fdfaf6, #fff8ef, #f7eee4);
+    color: #1f2937;
+    font-family: 'Segoe UI', 'Tahoma', 'Cairo', sans-serif;
+  }
+
+  /* ✨ Permanent Anonymous Banner */
+  .anonymous-banner {
+    background: linear-gradient(90deg, #ffefdb, #ffe3c2);
+    color: #8b3e00;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 12px 20px;
+    display: inline-block;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+  }
+
+  /* 🔶 Header Card */
+  .page-header {
+    background: linear-gradient(135deg, #f6d7b0, #f3c087);
+    border-radius: 18px;
+    padding: 30px 25px;
+    color: #3b2406;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+  }
+
+  .page-header:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+
+  /* 🪞 Form Card */
+  .card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  label {
+    font-weight: 600;
+    color: #3b3b3b;
+    margin-bottom: 6px;
+  }
+
+  
+  .form-control, .form-select {
+    border-radius: 10px;
+    padding: 10px 12px;
+    border: 1.5px solid #dcdcdc;
+    background-color: #fff;
+    transition: all 0.3s ease;
+  }
+
+  .form-control:hover, .form-select:hover {
+    border-color: #d17a22;
+    background-color: #fffaf5;
+    box-shadow: 0 0 5px rgba(209, 122, 34, 0.15);
+  }
+
+  .form-control:focus, .form-select:focus {
+    border-color: #d17a22;
+    box-shadow: 0 0 0 0.25rem rgba(209, 122, 34, 0.25);
+  }
+
+
+  .btn-primary {
+    background: linear-gradient(135deg, #d17a22, #ffa84c);
+    border: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #c66a11, #ff9f30);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(209, 122, 34, 0.3);
+  }
+
+  .btn-outline-secondary {
+    border: 2px solid #d17a22;
+    color: #d17a22;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .btn-outline-secondary:hover {
+    background-color: #d17a22;
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  
+  .error-message {
+    font-size: 0.9rem;
+    margin-top: 6px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: rgba(220, 38, 38, 0.08);
+    color: #b91c1c;
+  }
+
+  
+  .fade-in {
+    animation: fadeIn 0.9s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<section class="py-5 fade-in">
+  <div class="container" style="max-width: 950px;">
+
+    <!--  Header Section -->
+    <div class="text-center mb-4 page-header shadow-sm">
+      <h2 class="fw-bold mb-2" style="font-size: 2.3rem;">
+        {% if lang == 'en' %}Share Your Story{% else %}شارك قصتك{% endif %}
+      </h2>
+      <p class="mb-3 text-dark" style="font-size: 1.1rem;">
+        {% if lang == 'en' %}
+          Dear citizen, share your story to make your voice heard worldwide.
+        {% else %}
+          عزيزي المواطن ، شارك قصتك لنوصل صوتك للعالم.
+        {% endif %}
+      </p>
+      <div class="anonymous-banner mt-2">
+        {% if lang == 'en' %}
+          🔒 Your name and identity will never appear. You are completely anonymous.
+        {% else %}
+          🔒 اسمك وهويتك لن تظهر أبداً. مشاركتك مجهولة تماماً.
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- 📝 Form Section -->
+    <div class="card p-4 shadow-lg border-0">
+      <div class="card-body">
+
+        <form method="post" enctype="multipart/form-data" novalidate>
+
+          <!-- Age -->
+          <div class="mb-3">
+            <label>{% if lang == 'en' %}Age{% else %}العمر{% endif %}</label>
+            <select name="age" class="form-select" required>
+              <option value="">{% if lang == 'en' %}Choose{% else %}اختر{% endif %}</option>
+              <option value="<20">&lt;20</option>
+              <option value="20-24">20 - 24</option>
+              <option value="25-29">25 - 29</option>
+              <option value="30-34">30 - 34</option>
+              <option value="35-39">35 - 39</option>
+              <option value="40-44">40 - 44</option>
+              <option value="45-49">45 - 49</option>
+              <option value="50-54">50 - 54</option>
+              <option value="55-59">55 - 59</option>
+              <option value="60+">60+</option>
+            </select>
+            {% if errors.get("age") %}<div class="error-message">{{ errors["age"] }}</div>{% endif %}
+          </div>
+
+          <!-- Gender -->
+          <div class="mb-3">
+            <label>{% if lang == 'en' %}Gender{% else %}الجنس{% endif %}</label>
+            <select name="gender" class="form-select" required>
+              <option value="">{% if lang == 'en' %}Select{% else %}اختر{% endif %}</option>
+              <option value="Male">{% if lang == 'en' %}Male{% else %}ذكر{% endif %}</option>
+              <option value="Female">{% if lang == 'en' %}Female{% else %}أنثى{% endif %}</option>
+              <option value="Prefer not to say">{% if lang == 'en' %}Prefer not to say{% else %}أفضل عدم القول{% endif %}</option>
+            </select>
+            {% if errors.get("gender") %}<div class="error-message">{{ errors["gender"] }}</div>{% endif %}
+          </div>
+
+          <!-- Region -->
+          <div class="mb-3">
+            <label>{% if lang == 'en' %}Location / State{% else %}مكان القصة - الولاية{% endif %}</label>
+            <select id="region" name="state" class="form-select" required>
+              <option value="">{% if lang == 'en' %}Select Region{% else %}اختر المنطقة{% endif %}</option>
+              <option value="Khartoum">Khartoum</option>
+              <option value="Gezira">Gezira</option>
+              <option value="Kassala">Kassala</option>
+              <option value="Red Sea">Red Sea</option>
+              <option value="Blue Nile">Blue Nile</option>
+              <option value="White Nile">White Nile</option>
+              <option value="North Kordofan">North Kordofan</option>
+              <option value="South Kordofan">South Kordofan</option>
+              <option value="East Darfur">East Darfur</option>
+              <option value="West Darfur">West Darfur</option>
+              <option value="North Darfur">North Darfur</option>
+              <option value="South Darfur">South Darfur</option>
+              <option value="Central Darfur">Central Darfur</option>
+              <option value="Northern State">Northern State</option>
+              <option value="River Nile">River Nile</option>
+              <option value="Sennar">Sennar</option>
+            </select>
+            {% if errors.get("state") %}<div class="error-message">{{ errors["state"] }}</div>{% endif %}
+          </div>
+
+          <!-- Locality -->
+          <div class="mb-3 d-none" id="locality-wrapper">
+            <label for="locality">{% if lang == 'en' %}Locality{% else %}المحلية{% endif %}</label>
+            <select id="locality" name="locality" class="form-select"></select>
+          </div>
+
+          <!-- Time -->
+          <div class="mb-3">
+            <label>{% if lang == 'en' %}Time of Story{% else %}الوقت الذي حدثت فيه القصة{% endif %}</label>
+            <select name="time" class="form-select" required>
+              <option value="">{% if lang == 'en' %}Select Time{% else %}اختر الوقت{% endif %}</option>
+              <option value="April – June 2023">April – June 2023</option>
+              <option value="July – September 2023">July – September 2023</option>
+              <option value="October – December 2023">October – December 2023</option>
+              <option value="January – March 2024">January – March 2024</option>
+              <option value="April – June 2024">April – June 2024</option>
+              <option value="July – September 2024">July – September 2024</option>
+              <option value="October – December 2024">October – December 2024</option>
+              <option value="January – March 2025">January – March 2025</option>
+              <option value="April – June 2025">April – June 2025</option>
+              <option value="July 2025 – Present">July 2025 – Present</option>
+            </select>
+          </div>
+
+
+           <!-- Type of Misinformation -->
+        <div class="mb-3">
+          <label for="misinfo" class="form-label fw-semibold">{% if lang == 'en' %}Type of Misinformation{% else %}نوع المعلومة المضللة{% endif %}</label>
+          <select id="misinfo" name="misinfo" class="form-select interactive-field" required>
+            <option value="">{% if lang == 'en' %}Select Type{% else %}اختر النوع{% endif %}</option>
+            <option value="طرق غير امنة">طرق غير امنة</option>
+            <option value="مستشفيات">مستشفيات</option>
+            <option value="نقاط توزيع الامدادات الطبية">نقاط توزيع الامدادات الطبية</option>
+            <option value="فقدان شخص">فقدان شخص</option>
+            <option value="فقدان ممتلكات">فقدان ممتلكات</option>
+            <option value="ألغام - متفجرات">ألغام - متفجرات</option>
+            <option value="معلومة عن المواد الغذائية أو وجود التكايا">معلومة عن المواد الغذائية أو وجود التكايا</option>
+            <option value="معلومة عن انتصار أو دخول أحد طرفي النزاع لمنطقة ما">معلومة عن انتصار أو دخول أحد طرفي النزاع لمنطقة ما</option>
+            <option value="قرب انتهاء الحرب">قرب انتهاء الحرب</option>
+            <option value="معلومة مضللة أخرى">معلومة مضللة أخرى</option>
+          </select>
+        </div>
+
+        <!-- Follow-up (Dynamic) -->
+        <div class="mb-3 d-none" id="followup-wrapper">
+          <label for="followup" id="followup-label" class="form-label fw-semibold"></label>
+          <select id="followup" name="followup" class="form-select interactive-field"></select>
+        </div>
+
+        <!-- Decision -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">{% if lang == 'en' %}Did this misinformation lead you to make a decision?{% else %}هل المعلومة المضللة قادتك لاتخاذ قرار معين؟{% endif %}</label>
+          <select name="decision" class="form-select interactive-field" required>
+            <option value="">{% if lang == 'en' %}Select{% else %}اختر{% endif %}</option>
+            <option value="True">{% if lang == 'en' %}Yes{% else %}نعم{% endif %}</option>
+            <option value="False">{% if lang == 'en' %}No{% else %}لا{% endif %}</option>
+          </select>
+        </div>
+
+        <!-- Danger Level -->
+        <div class="mb-3">
+          <label class="form-label fw-semibold">{% if lang == 'en' %}Danger Level of this Decision{% else %}مستوى خطورة هذا القرار{% endif %}</label>
+          <div class="d-flex gap-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="danger" value="High" id="high">
+              <label class="form-check-label text-danger fw-semibold" for="high">
+                <i class="bi bi-exclamation-triangle-fill text-danger"></i>
+                {% if lang == 'en' %}High{% else %}عالية{% endif %}
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="danger" value="Medium" id="medium">
+              <label class="form-check-label text-warning fw-semibold" for="medium">
+                <i class="bi bi-exclamation-triangle-fill text-warning"></i>
+                {% if lang == 'en' %}Medium{% else %}متوسطة{% endif %}
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="danger" value="Low" id="low">
+              <label class="form-check-label text-success fw-semibold" for="low">
+                <i class="bi bi-check-circle-fill text-success"></i>
+                {% if lang == 'en' %}Low{% else %}منخفضة{% endif %}
+              </label>
+            </div>
+          </div>
+        </div>
+
+
+          <!-- Story -->
+          <div class="mb-3">
+            <label>{% if lang == 'en' %}Your Story{% else %}قصتك{% endif %}</label>
+            <textarea id="story" name="story" class="form-control" rows="6" maxlength="3000" required></textarea>
+            <div class="d-flex justify-content-between mt-1">
+              <small class="text-muted">{% if lang == 'en' %}Max 3000 chars{% else %}الحد الأقصى 3000 حرف{% endif %}</small>
+              <small class="text-muted" id="char-count">0 / 3000</small>
+            </div>
+          </div>
+
+          <!-- Media -->
+          <div class="mb-3">
+            <label for="media">{% if lang == 'en' %}Attach Media (optional){% else %}إرفاق وسائط (اختياري){% endif %}</label>
+            <input class="form-control" type="file" id="media" name="media" multiple accept="image/*,audio/*,video/*">
+            <div class="form-text">{% if lang == 'en' %}Max 10 files{% else %}الحد الأقصى 10 ملفات{% endif %}</div>
+            <ul id="file-list" class="mt-2 small text-muted"></ul>
+          </div>
+
+          <!-- Submit Buttons -->
+          <div class="d-flex gap-3 mt-4">
+            <button type="submit" class="btn btn-primary px-4 py-2 rounded-3 shadow-sm">
+              {% if lang == 'en' %}🚀 Share{% else %}🚀 إرسال{% endif %}
+            </button>
+            <a href="{{ url_for('main.home_fully', lang=lang) }}" class="btn btn-outline-secondary px-4 py-2 rounded-3">
+              {% if lang == 'en' %}Cancel{% else %}إلغاء{% endif %}
+            </a>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+
+  const regionSelect = document.getElementById('region');
+  const localityWrapper = document.getElementById('locality-wrapper');
+  const localitySelect = document.getElementById('locality');
+
+  const localities = {
+    "Khartoum": [
+      "محلية الخرطوم", "محلية أم درمان الكبرى", "محلية الخرطوم بحري",
+      "محلية شرق النيل", "محلية أم بدة", "محلية كرري", "محلية جبل أولياء"
+    ],
+    "Gezira": [
+      "محلية ود مدني الكبرى", "محلية جنوب الجزيرة", "محلية شرق الجزيرة",
+      "محلية المناقل", "محلية الحصاحيصا", "محلية أم القرى",
+      "محلية الكاملين", "محلية 24 القرشي"
+    ]
+  };
+
+  regionSelect.addEventListener('change', () => {
+    const selected = regionSelect.value;
+    localitySelect.innerHTML = '';
+    if (localities[selected]) {
+      localityWrapper.classList.remove('d-none');
+      localities[selected].forEach(loc => {
+        const opt = document.createElement('option');
+        opt.textContent = loc;
+        opt.value = loc;
+        localitySelect.appendChild(opt);
+      });
+    } else {
+      localityWrapper.classList.add('d-none');
+    }
+  });
+
+  const misinfo = document.getElementById("misinfo");
+  const followupWrapper = document.getElementById("followup-wrapper");
+  const followupSelect = document.getElementById("followup");
+  const followupLabel = document.getElementById("followup-label");
+
+  misinfo.addEventListener("change", function() {
+    followupSelect.innerHTML = "";
+    let options = [];
+
+    if (this.value === "طرق غير امنة") {
+      followupLabel.textContent = "ما هي تفاصيل القصة؟";
+      options = ["ارتكازات طريق", "حواجز", "تفتيش", "أخرى"];
+    } else if (this.value === "مستشفيات") {
+      followupLabel.textContent = "ما هو الوضع؟";
+      options = ["مستشفى مغلق", "رفض استقبال حالات", "نقص أطباء", "مستشفيات تحت سيطرة الدعم", "أخرى"];
+    } else if (this.value === "نقاط توزيع الامدادات الطبية") {
+      followupLabel.textContent = "ما التفاصيل؟";
+      options = ["أدوية أمراض مزمنة", "أدوية مغشوشة", "ارتكاز تسبب في اغلاق النقاط"];
+    } else if (this.value === "فقدان شخص") {
+      followupLabel.textContent = "ما التفاصيل؟";
+      options = ["اعتقال / تجنيد", "معلومة كاذبة", "تضخيم خبر", "أخرى"];
+    } else if (this.value === "فقدان ممتلكات") {
+      followupLabel.textContent = "ما التفاصيل؟";
+      options = ["عقار - منازل - مزارع - محلات تجارية", "سيارات - ماكينات", "ذهب - نقود"];
+    }
+
+    if (options.length > 0) {
+      followupWrapper.classList.remove("d-none");
+      options.forEach(opt => {
+        const o = document.createElement("option");
+        o.textContent = opt;
+        followupSelect.appendChild(o);
+      });
+    } else {
+      followupWrapper.classList.add("d-none");
+    }
+  });
+  const storyTextarea = document.getElementById("story");
+  const charCount = document.getElementById("char-count");
+  storyTextarea.addEventListener("input", () => {
+    charCount.textContent = `${storyTextarea.value.length} / 3000`;
+  });
+</script>
+
+{% endblock %}

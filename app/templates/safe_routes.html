@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Add subtle animation + responsive layout -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<style>
+  body {
+    background-color: #f9f7f3;
+  }
+
+   .safe-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    gap: 30px;
+  }
+
+  .safe-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .safe-image img {
+    border-radius: 20px;
+    width: 100%;
+    max-width: 850px;
+    max-height: 420px;
+    object-fit: cover;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+  }
+
+  .safe-image img:hover {
+    transform: scale(1.03);
+  }
+
+  .safe-text {
+    flex: 1 1 550px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.05);
+    padding: 30px 35px;
+    color: #333;
+    line-height: 1.7;
+    font-size: 1.05rem;
+    animation: fadeInUp 1.3s;
+  }
+
+  .safe-section {
+    margin-bottom: 30px;
+  }
+
+  .safe-section h5 {
+    color: #357960;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  .safe-section ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+
+  .safe-section ul li::before {
+    content: "• ";
+    color: #d17a22;
+    font-weight: bold;
+  }
+
+  .safe-section ul li {
+    margin-bottom: 8px;
+  }
+
+  .divider {
+    height: 2px;
+    background-color: #e7d9c0;
+    margin: 20px 0;
+  }
+
+  h2.page-title {
+    color: #d17a22;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+</style>
+
+<div class="container-fluid py-5">
+  <h2 class="page-title animate__animated animate__fadeInDown">
+    {% if lang == 'en' %}Safe Routes{% else %}الطرق الآمنة{% endif %}
+  </h2>
+
+  <div class="safe-container animate__animated animate__fadeInUp">
+
+    <div class="safe-image">
+      <img src="{{ url_for('static', filename='img/safe_route.jpg') }}" alt="Safe Route Image">
+    </div>
+
+    <div class="safe-text" dir="{% if lang == 'ar' %}rtl{% else %}ltr{% endif %}">
+      {% if lang == 'en' %}
+      <p><strong>What to do if you encounter misinformation about "safe routes":</strong></p>
+      <p>Try to avoid moving if you know the route is unsafe. If you have already moved, focus on preserving your life first, then protecting your documents, digital privacy, and the safety of your family members. Remain neutral, avoid political confrontation, seek humanitarian assistance, and leave the area at the first safe opportunity.</p>
+
+      <div class="divider"></div>
+
+      <div class="safe-section">
+        <h5>1) Before Moving (How to Verify the Safety of the Route)</h5>
+        <ul>
+          <li>You can verify by contacting someone who lives near the area you are traveling to, known community leaders, or recognized NGOs in your area. Do not take any action based on a single message forwarded from unknown social media channels.</li>
+          <li>Seek confirmation from people you trust in the field (neighborhood volunteers, community committees, religious leaders) who are close to the route.</li>
+          <li>Watch for warning signs: messages that pressure you to leave immediately without proof, demand money, or insist on going to a specific, unknown "assembly point." Misinformation often exploits urgency to push people to move. 
+            If possible, postpone movement until humanitarian actors announce safe passage or can confirm physical convoy arrangements (vehicles, escorts, and clearance from a checkpoint). It's best to obtain updates from UNHCR and the International Committee of the Red Cross.
+           </li>
+        </ul>
+      </div>
+
+      <div class="safe-section">
+        <h5>2) If you realize the "safe route" was wrong and you may encounter a security checkpoint from an armed group.</h5>
+        <ul>
+          <li>Remain calm and prioritize your life. If physical danger is imminent, comply with orders and look for any opportunity to reach a safer place later</li>
+          <li>Avoid arguments or political statements. A neutral demeanor reduces the risk of detention or violence. Amnesty International and human rights reports warn that parties to the conflict in Sudan have detained civilians and committed abuses—avoid giving them an excuse.</li>
+          <li>Always try to stay with your family if it's safe to do so; if you're separated, keep/record details of where each person was taken and who they spoke to.</li>
+        </ul>
+      </div>
+
+      <div class="safe-section">
+        <h5>3) Your Phone and Digital Security</h5>
+        <p>Assume that phones and devices may be subject to inspection. The International Committee of the Red Cross and its digital security guidelines recommend minimizing sensitive material that could put you or others at risk.</p>
+        <h5>Practical steps before any checkpoint or movement (if possible):</h5>
+        <ul>
+          <li>Back up important contacts and documents to an encrypted cloud account (if available) or with a trusted contact outside the area.</li>
+          <li>Delete or archive political chats, battle photos, or geotagged media that could be used against you or others. However, don't wipe your device completely—a completely clean device could raise suspicions. Leave neutral content (family photos, market photos) behind.</li>
+          <li>Turn off biometric unlocking (FaceID/fingerprint) if possible and use a passcode. Don't force passcodes if it would put you at risk—assess the immediate risk.</li>
+          <li>If you are forced to hand over devices, turn them off first. If you must hand them over, declare them disabled.</li>
+          <li>Enable two-factor authentication on important accounts now (using an authentication app if possible), to make it easier to access later.</li>
+          <li>If you are being detained or interrogated, do not unlock or hand over passwords unless you assess there is an imminent physical risk of refusal. Digital rights groups' guidelines indicate that the safest technical strategy depends on the threat environment.</li>
+        </ul>
+      </div>
+
+      <div class="safe-section">
+        <h5>4) During Checkpoints/Interrogation</h5>
+        <ul>
+          <li>Be calm, concise, and neutral. Avoid lengthy political statements or allegations that could turn into accusations.</li>
+          <li>Ask for clarification about your situation: who is holding you, where are you being taken, can you make a phone call, is there a legal basis for the detention? Amnesty International and other organizations document arbitrary detention in Sudan - it may help to ask for the basics quietly..</li>
+        </ul>
+      </div>
+
+      {% else %}
+      <p><strong>ماذا تفعل إذا واجهت معلومات مضللة حول "الطرق الآمنة":</strong></p>
+      <p>حاول تجنب الحركة إذا كنت تعرف أن الطريق غير آمن. إذا كنت قد تحركت بالفعل، ركز أولاً على الحفاظ على حياتك، ثم حماية وثائقك وخصوصيتك الرقمية وسلامة أفراد عائلتك. حافظ على الحياد، وتجنب المواجهة السياسية، وابحث عن المساعدة الإنسانية، وغادر المنطقة عند أول فرصة آمنة.</p>
+
+      <div class="divider"></div>
+
+      <div class="safe-section">
+        <h5>١) قبل التحرك (كيفية التحقق من سلامة الطريق)</h5>
+        <ul>
+          <li>يمكنك التحقق من خلال التواصل مع شخص يعيش بالقرب من المنطقة التي تنوي السفر إليها، أو مع قادة مجتمع معروفين، أو المنظمات غير الحكومية المعترف بها في منطقتك. لا تتخذ أي إجراء بناءً على رسالة واحدة تم تمريرها من قنوات التواصل الاجتماعي غير المعروفة.</li>
+          <li>اطلب التأكيد من الأشخاص الذين تثق بهم في المجال (متطوعو الحي، لجان المجتمع، القادة الدينيون) الذين هم قريبون من المسار.</li>
+          <li>راقب علامات التحذير: الرسائل التي تضغط عليك للمغادرة فورًا دون دليل، أو تطالب بالمال، أو تصر على التوجه إلى "نقطة تجمع" معينة وغير معروفة. غالبًا ما يستغل نشر المعلومات المضللة الإلحاح لدفع الناس إلى التحرك.إذا أمكن، قم بتأجيل الحركة حتى يعلن الممثلون الإنسانيون عن المرور الآمن أو يمكنهم تأكيد ترتيبات القوافل المادية (المركبات، المرافقة، وتصريح المرور من نقطة تفتيش). من الأفضل الحصول على التحديثات من المفوضية السامية للأمم المتحدة لشؤون اللاجئين واللجنة الدولية للصليب الأحمر.</li>
+          <li>إذا اضطريت لتسليم الأجهزة، قم بإيقاف تشغيلها أولاً. إذا كان يجب عليك تسليمها، أعلن أنها معطلة.</li><li>قم بتمكين التحقق بخطوتين على الحسابات المهمة الآن (باستخدام تطبيق التحقق إذا أمكن)، لتسهيل الوصول لاحقاً.</li><li>إذا كنت محتجزاً أو تخضع للاستجواب، لا تقم بفتح الأجهزة أو تسليم كلمات المرور إلا إذا قدرت أن هناك خطر جسدي وشيك عند الرفض. تشير إرشادات مجموعات حقوق الرقمية إلى أن الاستراتيجية التقنية الأكثر أماناً تعتمد على بيئة التهديد.</li>
+        </ul>
+      </div>
+
+      <div class="safe-section">
+        <h5>٢) إذا أدركت أن "المسار الآمن" كان خاطئًا وقد تواجه نقطة تفتيش أمنية من مجموعة مسلحة.</h5>
+        <ul>
+          <li> ابق هادئاً وأعطِ الأولوية لحياتك. إذا كان الخطر الجسدي وشيكاً، اتبع التعليمات وابحث عن أي فرصة للوصول إلى مكان أكثر أماناً لاحقاً</li>
+          <li>تجنب الجدالات أو التصريحات السياسية. الحفاظ على موقف حيادي يقلل من خطر الاحتجاز أو العنف. تحذر منظمة العفو الدولية وتقارير حقوق الإنسان من أن أطراف النزاع في السودان قد احتجزت المدنيين وارتكبت انتهاكات - تجنب منحهم ذريعة.</li>
+          <li>حاول دائمًا البقاء مع عائلتك إذا كان ذلك آمنًا؛ إذا تم فصلك عنهم، احتفظ بتفاصيل مكان أخذ كل شخص ومع من تحدث.</li>
+        </ul>
+      </div>
+
+      <div class="safe-section">
+        <h5>3) هاتفك والأمن الرقمي</h5>
+        <p>افترض أن الهواتف والأجهزة قد تكون عرضة للتفتيش. توصي اللجنة الدولية للصليب الأحمر وإرشاداتها للأمن الرقمي بتقليل المواد الحساسة التي قد تعرضك أو الآخرين للخطر.</p>
+        <h5>خطوات عملية قبل أي نقطة تفتيش أو تحرك (إن أمكن):</h5>
+        <ul>
+          <li>قم بعمل نسخة احتياطية من جهات الاتصال والمستندات المهمة على حساب سحابي مشفر (إذا كان متاحًا) أو مع جهة موثوقة خارج المنطقة.</li>
+          <li>احذف أو أرشيف المحادثات السياسية وصور المعارك أو الوسائط المحددة جغرافيًا التي قد تستخدم ضدك أو ضد الآخرين. ومع ذلك، لا تمسح جهازك بالكامل—فالجهاز النظيف تمامًا قد يثير الشكوك. اترك المحتوى المحايد (صور العائلة، صور السوق).</li><li>قم بإيقاف فتح الجهاز باستخدام القياسات الحيوية (FaceID/البصمة) إذا أمكن واستخدم رمز مرور. لا تفرض استخدام رموز المرور إذا كان ذلك سيعرضك للخطر—قم بتقييم الخطر الفوري.</li>
+          <li>فعّل التحقق بخطوتين لحساباتك المهمة.</li>
+        </ul>
+      </div>
+
+      <div class="safe-section">
+        <h5>٤) أثناء نقاط التفتيش أو الاستجواب</h5>
+        <ul>
+            <li>كن هادئًا وموجزًا وحياديًا. تجنب التصريحات السياسية المطولة أو الاتهامات التي قد تتحول إلى اتهامات.</li>
+            <li>اطلب توضيحًا حول وضعك: من الذي يحتجزك، إلى أين سيتم نقلك، هل يمكنك إجراء مكالمة هاتفية، هل هناك أساس قانوني للاحتجاز؟ توثق منظمة العفو الدولية ومنظمات أخرى الاعتقال التعسفي في السودان - قد يساعدك السؤال بهدوء عن الأمور الأساسية.</li></ul>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

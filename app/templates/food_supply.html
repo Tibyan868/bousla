@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+  <div class="card shadow-lg border-0 p-4 mx-auto" style="border-radius: 20px; max-width: 900px;">
+    
+    <img src="{{ url_for('static', filename='img/supply.jpg') }}" 
+         alt="Food/Supply Distribution" 
+         class="img-fluid rounded mb-4" 
+         style="height: 320px; width: 100%; object-fit: cover;">
+    
+    <h2 class="fw-bold text-center mb-4" style="color: #d17a22;">
+      {% if lang == 'en' %}
+      Food / Supply Distribution Locations
+      {% else %}
+      مواقع توزيع الغذاء / الإمدادات
+      {% endif %}
+    </h2>
+
+    <div class="text-muted" style="line-height: 1.8; font-size: 0.95rem;">
+      {% if lang == 'en' %}
+      <p><strong>What should you do if you follow incorrect information about a food/supply distribution location and put yourself or others at risk?</strong></p>
+      <p>
+        Check before moving. If the information is incorrect and you are at risk of danger or wasting time, protect yourself first. 
+        Keep your documents and contact information safe, and inform humanitarian agencies involved in food distribution or neighborhood committees 
+        if others have posted incorrect locations. Learn ways to avoid falling into similar traps. 
+        Below are step-by-step instructions, a photocopiable checklist, and short messages you can use.
+      </p>
+
+      <h5 class="mt-4 fw-bold" style="color:#d76e41;">1) Immediate Steps – If You Are in the Wrong Place or the Situation Becomes Dangerous</h5>
+      <ul>
+        <li>Prioritize safety. If the area becomes crowded, chaotic, or prone to fighting, leave calmly for the nearest safe shelter (building, mosque/church, community center).</li>
+        <li>Move together, if it is safe. Try to stay with your family or trusted neighbors; being in a group reduces the likelihood of separation or targeting.</li>
+        <li>Avoid confrontation. Don't engage in political debates or loudly blame others, as this can escalate risk. Record the time, location, and actors if safe to do so.</li>
+        <li>If anyone is injured, seek immediate medical help from local clinics or NGOs.</li>
+      </ul>
+
+      <h5 class="mt-4 fw-bold" style="color:#d76e41;">2) Digital and Information Hygiene — What to Do with a Misleading Message?</h5>
+      <ul>
+        <li>Save the original message (screenshot or copy) before deleting anything—this helps agencies track misinformation.</li>
+        <li>Do not repost. Report to humanitarian or community organizations.</li>
+        <li>Ask for proof from trusted contacts before sharing information.</li>
+        <li>Report misinformation on platforms and to local humanitarian actors.</li>
+      </ul>
+
+      <h5 class="mt-4 fw-bold" style="color:#d76e41;">3) Inform Others and Report the Incident</h5>
+      <p>
+        Report the incident to humanitarian actors (ICRC, Sudanese Red Crescent, UNHCR, WFP, or local NGOs). 
+        They can verify and correct misinformation. Inform community leaders or distribution organizers to redirect supplies safely.
+      </p>
+
+      <h5 class="mt-4 fw-bold" style="color:#d76e41;">4) How to Verify Future Food/Supply Messages – Quick Rules</h5>
+      <ul>
+        <li>Get two independent confirmations before acting.</li>
+        <li>Verify with trusted local volunteers or committees.</li>
+        <li>Contact named organizers directly instead of relying on forwarded messages.</li>
+        <li><strong>Ignore warning signs:</strong> messages that urge urgency, secrecy, or request money.</li>
+      </ul>
+
+      <h5 class="mt-4 fw-bold" style="color:#d76e41;">5) If You Lost Time, Resources, or People Due to a False Message</h5>
+      <ul>
+        <li>Document the incident: names, times, losses, organizers, and any injuries.</li>
+        <li>Report to aid agencies for follow-up and future prevention.</li>
+      </ul>
+
+      {% else %}
+
+      <p><strong>ماذا يجب أن تفعل إذا اتبعت معلومات غير صحيحة حول موقع توزيع الغذاء أو الإمدادات وعرّضت نفسك أو الآخرين للخطر؟</strong></p>
+      <p>
+        تحقق قبل التحرك. إذا كانت المعلومات غير صحيحة وكنت معرضًا للخطر أو لإهدار الوقت، فاحمِ نفسك أولاً. 
+        احتفظ بوثائقك ومعلومات الاتصال بك في مكان آمن، وأبلغ الوكالات الإنسانية المعنية بتوزيع الغذاء أو لجان الأحياء 
+        إذا لاحظت أن الآخرين نشروا مواقع غير صحيحة. تعلّم الطرق التي تساعدك على تجنب الوقوع في فخاخ مماثلة. 
+        أدناه تجد خطوات عملية، وقائمة تحقق قابلة للطباعة، ورسائل قصيرة يمكنك استخدامها.
+      </p>
+
+      <h5 class="mt-4 fw-bold" style="color:#d76e41;">1) الخطوات الفورية – إذا كنت في المكان الخطأ أو أصبحت الحالة خطيرة</h5>
+      <ul>
+        <li>اجعل السلامة أولوية. إذا أصبح المكان مزدحمًا أو فوضويًا أو ظهرت بوادر اشتباك، غادر بهدوء إلى أقرب مأوى آمن (مبنى، مسجد/كنيسة، مركز مجتمعي).</li>
+        <li>تحرك مع الآخرين إن أمكن. حاول البقاء مع عائلتك أو جيرانك الموثوقين؛ فالتواجد ضمن مجموعة يقلل خطر الضياع أو الاستهداف.</li>
+        <li>تجنب المواجهة أو النقاشات السياسية أو إلقاء اللوم علنًا، لأن ذلك قد يزيد من الخطر. سجّل الوقت والموقع والأشخاص إن كان ذلك آمنًا.</li>
+        <li>إذا أُصيب أحد، اطلب المساعدة الطبية فورًا من المراكز الصحية المحلية أو المنظمات الإنسانية.</li>
+      </ul>
+
+      <h5 class="mt-4 fw-bold" style="color:#d76e41;">2) النظافة الرقمية والمعلوماتية – كيف تتعامل مع رسالة مضللة؟</h5>
+      <ul>
+        <li>احفظ الرسالة الأصلية (لقطة شاشة أو نسخة) قبل حذفها، فهذا يساعد الوكالات على تتبع مصدر المعلومات الخاطئة.</li>
+        <li>لا تعِد نشر الرسالة. أبلغ عنها للمنظمات الإنسانية أو المجتمعية الموثوقة.</li>
+        <li>تحقق من المرسل إن أمكن واسأله عن مصدر المعلومات، لكن لا تواجه الأشخاص العدائيين أو المجهولين.</li>
+        <li>أبلغ عن الرسائل المضللة عبر المنصات نفسها (مثل مجموعات واتساب أو فيسبوك) ولدى الجهات الإنسانية المحلية.</li>
+      </ul>
+
+      <h5 class="mt-4 fw-bold" style="color:#d76e41;">3) أبلغ الآخرين وسجّل الحادثة</h5>
+      <p>
+        أبلغ الوكالات الإنسانية (اللجنة الدولية للصليب الأحمر، الهلال الأحمر السوداني، المفوضية السامية لشؤون اللاجئين، برنامج الأغذية العالمي، أو المنظمات المحلية) 
+        حتى لو كانت الرسالة تدّعي أنها من لجنة حي وتبيّن أنها غير صحيحة. 
+        هذه الجهات قادرة على التحقق من صحة المعلومات وتوجيه الناس إلى نقاط توزيع أكثر أمانًا. 
+        كما يُستحسن إبلاغ قادة المجتمع المحلي والمنظمين بما حدث.
+      </p>
+
+      <h5 class="mt-4 fw-bold" style="color:#d76e41;">4) كيفية التحقق من رسائل توزيع الغذاء مستقبلاً – قواعد سريعة</h5>
+      <ul>
+        <li>احصل على تأكيدين مستقلين قبل أن تتصرف بناءً على أي رسالة عاجلة.</li>
+        <li>تحقق من خلال متطوعين موثوقين أو لجان الأحياء أو العاملين الصحيين المحليين.</li>
+        <li>تواصل مباشرة مع الشخص أو الجهة المذكورة في الرسالة بدل الاعتماد على إعادة الإرسال.</li>
+        <li><strong>تجاهل العلامات التحذيرية:</strong> الرسائل التي تطلب التحرك فورًا، أو تطلب أموالاً، أو توجهك إلى أماكن نائية بمفردك.</li>
+      </ul>
+
+      <h5 class="mt-4 fw-bold" style="color:#d76e41;">5) إذا خسرت وقتًا أو موارد أو أشخاصًا بسبب رسالة كاذبة</h5>
+      <ul>
+        <li>وثّق ما حدث: الأسماء، الوقت، الخسائر، الجهة المرسلة، وأي إصابات.</li>
+        <li>أبلغ الجهات الإنسانية المعنية لتتمكن من متابعة الحالة وتفادي أخطاء مماثلة مستقبلًا.</li>
+      </ul>
+      
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+</style>
+{% endblock %}

@@ -1,0 +1,26 @@
+# Render Blueprint for Bousala — Render reads this file and creates the web service for you.
+# Dashboard → New → Blueprint → choose this GitHub repo.
+services:
+  - type: web
+    name: bousala
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn run:app --workers 1 --threads 4 --timeout 120
+    healthCheckPath: /about
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: SECRET_KEY
+        generateValue: true        # Render creates a random secret for you
+      - key: DATABASE_URL
+        sync: false                # paste your Neon connection string when asked
+      - key: ADMIN_USERNAME
+        value: ADMIN
+      - key: ADMIN_PASSWORD
+        sync: false                # choose a strong password when asked
+      - key: LLM_PROVIDER
+        sync: false                # gemini / groq / anthropic / openai (or leave empty)
+      - key: LLM_API_KEY
+        sync: false                # your AI key (or leave empty for offline mode)

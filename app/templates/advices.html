@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+  <h2 class="fw-bold mb-5 text-center" style="color: #d17a22;">
+    {% if lang == 'en' %}Safety & Awareness Tips{% else %}نصائح للسلامة والوعي{% endif %}
+  </h2>
+
+  <!-- Safe Routes Advice -->
+  <div class="col-md-12 mb-4">
+    <div class="card h-100 shadow-sm advice-card position-relative">
+      <img src="{{ url_for('static', filename='img/safe_route.jpg') }}"
+           class="card-img-top" alt="Safe Routes" style="height: 300px; object-fit: cover;">
+      <div class="card-body text-center">
+        <h5 class="card-title fw-bold" style="color:#d76e41;">
+          {% if lang == 'en' %}Safe Routes{% else %}الطرق الآمنة{% endif %}
+        </h5>
+        <h5 class="card-text text-muted">
+          {% if lang == 'en' %}
+          <b>Try to avoid moving if you know the route is unsafe. If you have already moved, focus on preserving your life first, then protecting your documents, digital privacy, and the safety of your family members. Remain neutral, avoid political confrontation, seek humanitarian assistance, and leave the area at the first safe opportunity.</b>
+          {% else %}
+          <b>حاول تجنب الحركة إذا كنت تعرف أن الطريق غير آمن. إذا كنت قد تحركت بالفعل، ركز أولاً على الحفاظ على حياتك، ثم حماية وثائقك وخصوصيتك الرقمية وسلامة أفراد عائلتك. حافظ على الحياد، وتجنب المواجهة السياسية، وابحث عن المساعدة الإنسانية، وغادر المنطقة عند أول فرصة آمنة.</b>
+          {% endif %}
+        </h5>
+        <a href="{{ url_for('main.safe_routes', lang=lang) }}" class="stretched-link" aria-label="Safe Routes"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Food/Supply Distribution Advice -->
+  <div class="col-md-12 mb-4">
+    <div class="card h-100 shadow-sm advice-card position-relative">
+      <img src="{{ url_for('static', filename='img/supply.jpg') }}"
+           class="card-img-top" alt="Food/Supply Distribution" style="height: 300px; object-fit: cover;">
+      <div class="card-body text-center">
+        <h5 class="card-title fw-bold" style="color:#d76e41;">
+          {% if lang == 'en' %}Food / Supply Distribution{% else %}توزيع الغذاء / الإمدادات{% endif %}
+        </h5>
+        <h5 class="card-text text-muted">
+          {% if lang == 'en' %}
+          <b>Check before moving. If the information is incorrect and you are at risk of danger or wasting time, protect yourself first. Keep your documents and contact information safe, and inform humanitarian agencies or local committees if incorrect locations are posted. Learn how to avoid similar traps below.</b>
+          {% else %}
+          <b>تحقق قبل التحرك. إذا كانت المعلومات غير صحيحة وقد تتعرض للخطر أو إضاعة الوقت، فاحمِ نفسك أولاً. احفظ وثائقك ومعلومات الاتصال الخاصة بك بأمان، وأبلغ الوكالات الإنسانية أو اللجان المحلية إذا تم نشر مواقع غير صحيحة. تعلم كيف تتجنب الوقوع في نفس الأخطاء أدناه.</b>
+          {% endif %}
+        </h5>
+        <a href="{{ url_for('main.food_supply', lang=lang) }}" class="stretched-link" aria-label="Food Supply Advice"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decision-Making During the War Advice -->
+  <div class="col-md-12 mb-4">
+    <div class="card h-100 shadow-sm advice-card position-relative">
+      <img src="{{ url_for('static', filename='img/s.jpg') }}"
+           class="card-img-top" alt="Decision-Making During the War" style="height: 300px; object-fit: cover;">
+      <div class="card-body text-center">
+        <h5 class="card-title fw-bold" style="color:#d76e41;">
+          {% if lang == 'en' %}Decision-Making During the War{% else %}اتخاذ القرار أثناء الحرب{% endif %}
+        </h5>
+        <h5 class="card-text text-muted">
+          {% if lang == 'en' %}
+          <b>Establish a small, trusted network for information exchange and cross-check multiple sources.</b>
+          {% else %}
+          <b>كوّن شبكة صغيرة وموثوقة لتبادل المعلومات وتحقق من المصادر المتعددة قبل اتخاذ أي قرار.</b>
+          {% endif %}
+        </h5>
+        <a href="{{ url_for('main.decision', lang=lang) }}" class="stretched-link" aria-label="Decision-Making Advice"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW: Psychological Aspect Advice -->
+  <div class="col-md-12 mb-4">
+    <div class="card h-100 shadow-sm advice-card position-relative">
+      <img src="{{ url_for('static', filename='img/mental.jpg') }}"
+           class="card-img-top" alt="Psychological Aspect" style="height: 300px; object-fit: cover;">
+      <div class="card-body text-center">
+        <h5 class="card-title fw-bold" style="color:#d76e41;">
+          {% if lang == 'en' %}The Psychological Aspect{% else %}الجانب النفسي{% endif %}
+        </h5>
+        <h5 class="card-text text-muted">
+          {% if lang == 'en' %}
+          <b>Psychological Resilience in the Age of Misinformation — In times of war, displacement, and the rapid flow of information, misinformation does more than distort facts — it also deeply affects our emotional balance. This page provides support for Sudanese communities to stay calm, aware, and emotionally strong.</b>
+          {% else %}
+          <b>المرونة النفسية في عصر المعلومات المضللة — في أوقات الحرب والنزوح وتدفق المعلومات السريع، لا يقتصر خطر المعلومات المضللة على تشويه الحقائق فقط، بل يمتد ليؤثر على توازننا النفسي والعاطفي. تهدف هذه الصفحة إلى دعم المجتمعات السودانية للبقاء هادئة وواعية ومتماسكة نفسيًا.</b>
+          {% endif %}
+        </h5>
+        <a href="{{ url_for('main.mental_aspect', lang=lang) }}" class="stretched-link" aria-label="Psychological Aspect"></a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+  <!-- NEW: Children & Elderly Advice -->
+  <div class="col-md-12 mb-4">
+    <div class="card h-100 shadow-sm advice-card position-relative">
+      <img src="{{ url_for('static', filename='img/old.jpg') }}"
+           class="card-img-top advice-img"
+           alt="Children and Elderly"
+           style="height: 400px; object-fit: cover;">
+      <div class="card-body text-center">
+        <h5 class="card-title fw-bold" style="color:#d76e41;">
+          {% if lang == 'en' %}
+            A Guide to Dealing with Children and the Elderly
+          {% else %}
+            دليل التعامل مع الأطفال وكبار السن
+          {% endif %}
+        </h5>
+        <h5 class="card-text text-muted">
+          {% if lang == 'en' %}
+            <b>Browse these compassionate guidelines — anxiety and fear can easily spread to children and the elderly during wars. Learn how to keep them calm, informed, and emotionally safe.</b>
+          {% else %}
+            <b>تصفّح هذا الدليل الهادئ — فالقلق والخوف ينتقلان بسهولة إلى الأطفال وكبار السن أثناء الحروب. تعلّم كيف تحافظ على هدوئهم وسلامهم النفسي.</b>
+          {% endif %}
+        </h5>
+        <a href="{{ url_for('main.old', lang=lang) }}" class="stretched-link" aria-label="Children and Elderly Advice"></a>
+      </div>
+    </div>
+  </div>
+
+<style>
+.advice-img {
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+.advice-img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+</style>
+
+
+</div>
+
+<style>
+.advice-card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.advice-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+</style>
+
+
+
+{% endblock %}

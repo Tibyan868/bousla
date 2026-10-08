@@ -1,0 +1,275 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="min-vh-100 d-flex flex-column justify-content-between"
+     style="background: linear-gradient(135deg, #fdfaf6, #fff8ef, #f7eee4);">
+
+  <!-- Hero Section -->
+  <section class="py-5 text-center">
+    <div class="container">
+      <h1 class="display-4 fw-bold mb-3">
+        {% if request.args.get('lang') == 'en' %}About Bousala 🧭{% else %} 🧭 حول بوصلة {% endif %}
+      </h1>
+      <p class="lead text-muted mx-auto" style="max-width: 700px;">
+        {% if request.args.get('lang') == 'en' %}
+          Bousala is your digital compass in times of conflict. Share your story, and connect with a community that cares.
+        {% else %}
+          بوصلة هي بوصلة رقمية في أوقات النزاع. شارك قصتك،  وتواصل مع مجتمع يهتم بك.
+        {% endif %}
+      </p>
+    </div>
+  </section>
+
+  <!-- Feature Sections -->
+  <section class="py-5">
+    <div class="container">
+
+      <div class="row g-5">
+
+        <!-- Guide Bot -->
+<div class="col-12 col-lg-6">
+  <div class="feature-card shadow-lg p-5 rounded-5 position-relative overflow-hidden text-white" 
+       style="background: linear-gradient(135deg, #6c5ce7, #a29bfe); min-height: 320px; transition: transform 0.3s ease, box-shadow 0.3s ease;">
+       
+    <div class="feature-icon mb-3 animate__animated animate__pulse animate__infinite">
+      <i class="bi bi-compass-fill fs-1"></i>
+    </div>
+
+    <h3 class="fw-bold mb-3">
+      {% if request.args.get('lang') == 'en' %}
+         Guide Bot
+      {% else %}
+         الدليل الذكي
+      {% endif %}
+    </h3>
+
+    <p class="fs-6">
+  {% if request.args.get('lang') == 'en' %}
+    The <strong>Guide Bot</strong> helps you stay safe and informed — offering quick guidance, verified facts, 
+    and trusted support when you need it most.
+  {% else %}
+    <strong>الدليل الذكي</strong> يساعدك على البقاء آمنًا ومطلعًا — يقدّم إرشادات سريعة، ومعلومات مؤكدة، 
+    ودعمًا موثوقًا عندما تكون في أمسّ الحاجة إليه.
+  {% endif %}
+</p>
+
+
+    <a href="{{ url_for('main.guidebot') }}" class="stretched-link"></a>
+  </div>
+</div>
+
+<!-- Add this CSS in the same page or your main CSS file -->
+<style>
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+}
+</style>
+
+        <!-- Share Your Story -->
+        <div class="col-12 col-lg-6">
+          <div class="feature-card shadow-lg p-5 rounded-5 position-relative overflow-hidden text-white" 
+               style="background: linear-gradient(135deg, #fd79a8, #e84393); min-height: 300px;">
+            <div class="feature-icon mb-3">
+              <i class="bi bi-chat-dots fs-1"></i>
+            </div>
+            <h3 class="fw-bold mb-3">
+              {% if request.args.get('lang') == 'en' %} Share Your Story {% else %} شارك تجربتك {% endif %}
+            </h3>
+            <p class="fs-6">
+              {% if request.args.get('lang') == 'en' %}
+                Your experiences matter. Inspire others and make your voice heard in moments that count.
+              {% else %}
+                تجاربك مهمة. ألهم الآخرين واجعل صوتك مسموعاً في اللحظات الحاسمة.
+              {% endif %}
+            </p>
+            <a href="{{ url_for('main.post', lang=request.args.get('lang', 'ar')) }}" class="stretched-link"></a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row g-5 mt-4">
+
+        <!-- Community Support -->
+        <div class="col-12 col-lg-6">
+          <div class="feature-card shadow-lg p-5 rounded-5 position-relative overflow-hidden text-white" 
+               style="background: linear-gradient(135deg, #00b894, #55efc4); min-height: 300px;">
+            <div class="feature-icon mb-3">
+              <i class="bi bi-people fs-1"></i>
+            </div>
+            <h3 class="fw-bold mb-3">
+              {% if request.args.get('lang') == 'en' %} Community Support {% else %} دعم المجتمع {% endif %}
+            </h3>
+            <p class="fs-6">
+              {% if request.args.get('lang') == 'en' %}
+                Connect with others, learn from shared experiences, and build solidarity even in tough times.
+              {% else %}
+                تواصل مع الآخرين، تعلم من التجارب المشتركة، وابدأ التضامن حتى في أصعب الظروف.
+              {% endif %}
+            </p>
+            <a href="{{ url_for('main.posts_list', lang=request.args.get('lang', 'ar')) }}" class="stretched-link"></a>
+          </div>
+        </div>
+
+        <!-- Education & Awareness -->
+        <div class="col-12 col-lg-6">
+          <div class="feature-card shadow-lg p-5 rounded-5 position-relative overflow-hidden text-white" 
+               style="background: linear-gradient(135deg, #fdcb6e, #e17055); min-height: 300px;">
+            <div class="feature-icon mb-3">
+              <i class="bi bi-book fs-1"></i>
+            </div>
+            <h3 class="fw-bold mb-3">
+              {% if request.args.get('lang') == 'en' %} Education & Awareness {% else %} التعليم والتوعية {% endif %}
+            </h3>
+            <p class="fs-6">
+              {% if request.args.get('lang') == 'en' %}
+                Access verified tips and educational resources to stay safe and informed.
+              {% else %}
+                الوصول إلى نصائح وموارد تعليمية موثوقة لتبقى آمناً ومطلعاً.
+              {% endif %}
+            </p>
+            <a href="{{ url_for('main.advices', lang=request.args.get('lang', 'ar')) }}" class="stretched-link"></a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+<!-- Your Impact Section -->
+<section class="py-5 bg-white">
+  <div class="container">
+    <h2 class="fw-bold text-center mb-5">
+      {% if request.args.get('lang') == 'en' %} Your Impact {% else %} تأثيرك {% endif %}
+    </h2>
+
+    <div class="row g-4">
+
+      <!-- Share Knowledge -->
+      <div class="col-12 col-md-4">
+        <div class="team-card shadow-lg rounded-4 p-4 text-center h-100" style="background: linear-gradient(135deg, #fd79a8, #e84393); color: white;">
+          <i class="bi bi-lightbulb fs-2 mb-3"></i>
+          <h5 class="fw-bold mb-2">
+            {% if request.args.get('lang') == 'en' %} Share Knowledge {% else %} شارك معرفتك {% endif %}
+          </h5>
+          <p class="fs-6">
+            {% if request.args.get('lang') == 'en' %}
+              Contribute tips, verified information, or personal experiences to help others navigate safely.
+            {% else %}
+              شارك نصائحك أو معلومات موثوقة أو تجاربك الشخصية لمساعدة الآخرين على البقاء بأمان.
+            {% endif %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Inspire Others -->
+      <div class="col-12 col-md-4">
+        <div class="team-card shadow-lg rounded-4 p-4 text-center h-100" style="background: linear-gradient(135deg, #6c5ce7, #a29bfe); color: white;">
+          <i class="bi bi-heart fs-2 mb-3"></i>
+          <h5 class="fw-bold mb-2">
+            {% if request.args.get('lang') == 'en' %} Inspire Others {% else %} ألهم الآخرين {% endif %}
+          </h5>
+          <p class="fs-6">
+            {% if request.args.get('lang') == 'en' %}
+              Your story or support can motivate people who are struggling, reminding them they are not alone.
+            {% else %}
+              قصتك أو دعمك يمكن أن يلهم الآخرين ويذكّرهم بأنهم ليسوا وحدهم.
+            {% endif %}
+          </p>
+        </div>
+      </div>
+
+      <!-- Spread Awareness -->
+      <div class="col-12 col-md-4">
+        <div class="team-card shadow-lg rounded-4 p-4 text-center h-100" style="background: linear-gradient(135deg, #00b894, #55efc4); color: white;">
+          <i class="bi bi-megaphone fs-2 mb-3"></i>
+          <h5 class="fw-bold mb-2">
+            {% if request.args.get('lang') == 'en' %} Spread Awareness {% else %} انشر الوعي {% endif %}
+          </h5>
+          <p class="fs-6">
+            {% if request.args.get('lang') == 'en' %}
+              Share accurate information and resources to protect your community from misinformation.
+            {% else %}
+              شارك المعلومات الدقيقة والموارد لحماية مجتمعك من المعلومات المضللة.
+            {% endif %}
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- Social Media Section -->
+  <section class="py-5 bg-light">
+    <div class="container text-center">
+
+      <h3 class="fw-bold mb-4">
+        {% if request.args.get('lang') == 'en' %} Follow Us {% else %} تابعنا {% endif %}
+      </h3>
+
+      <div class="d-flex justify-content-center gap-4 mb-3">
+        <a href="#" class="text-dark fs-3 social-icon" title="Facebook"><i class="bi bi-facebook"></i></a>
+        <a href="https://www.instagram.com/bousalasudan?igsh=Ym1id3Byc283YTZt&utm_source=qr" class="text-dark fs-3 social-icon" title="Instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://x.com/bousala_sudan" class="text-dark fs-3 social-icon" title="X (Twitter)"><i class="bi bi-x"></i></a>
+        <a href="mailto:bousala@gmail.com" class="text-dark fs-3 social-icon" title="Email"><i class="bi bi-envelope-fill"></i></a>
+      </div>
+
+      <p class="text-muted mb-0 fs-6">
+        bousala@gmail.com | 00249126348178
+      </p>
+    </div>
+  </section>
+
+</div>
+
+<style>
+/* Feature Cards */
+.feature-card {
+  border-radius: 30px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
+}
+.feature-card:hover {
+  transform: translateY(-15px) rotate(-1deg);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+/* Team Cards */
+.team-card {
+  background: #fff;
+  border-radius: 25px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+}
+
+/* Social Icons Hover */
+.social-icon {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.social-icon:hover {
+  transform: scale(1.3);
+  color: #0dcaf0;
+}
+
+/* Responsive Text Alignment */
+.text-end, .text-start {
+  text-align: inherit;
+}
+@media (max-width: 768px) {
+  .text-end, .text-start {
+    text-align: center !important;
+  }
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+</style>
+{% endblock %}

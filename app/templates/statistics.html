@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+
+  <!-- Header -->
+  <div class="text-center mb-4">
+    <h2 class="fw-bold" style="color:#d17a22;">
+      {% if lang == 'en' %}Misinformation — Key Findings (Survey){% else %}معلومات مضللة — النتائج الرئيسية (استبيان){% endif %}
+    </h2>
+    <p class="text-muted">
+      {% if lang == 'en' %}
+        Results from a community survey (n = 222). Click any card to expand details and view numbers.
+      {% else %}
+        نتائج استبيان المجتمع (عدد المشاركين = ٢٢٢). اضغط على أي بطاقة لعرض التفاصيل والأرقام.
+      {% endif %}
+    </p>
+  </div>
+
+  <!-- Animated counters row -->
+  <div class="row g-3 mb-5 justify-content-center">
+    <div class="col-6 col-md-3">
+      <div class="card text-center shadow-sm p-3 rounded-4">
+        <div class="fs-3 fw-bold counter" data-target="222">0</div>
+        <div class="text-muted small">
+          {% if lang == 'en' %}Total respondents{% else %}إجمالي المشاركين{% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-3">
+      <div class="card text-center shadow-sm p-3 rounded-4">
+        <div class="fs-3 fw-bold counter" data-target="100">0</div>
+        <div class="text-muted small">
+          {% if lang == 'en' %}Young women (20–30){% else %}نساء شابات (٢٠–٣٠){% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-3">
+      <div class="card text-center shadow-sm p-3 rounded-4">
+        <div class="fs-3 fw-bold counter" data-target="137">0</div>
+        <div class="text-muted small">
+          {% if lang == 'en' %}Reported difficulty accessing info{% else %}أصيبوا بصعوبة في الوصول للمعلومات{% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-3">
+      <div class="card text-center shadow-sm p-3 rounded-4">
+        <div class="fs-3 fw-bold counter" data-target="115">0</div>
+        <div class="text-muted small">
+          {% if lang == 'en' %}Had prior chatbot experience{% else %}لديهم خبرة سابقة مع الروبوتات{% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Accordion cards: each card corresponds to a finding -->
+  <div class="accordion" id="statsAccordion">
+
+    <!-- 1. Demographics & Displacement -->
+    <div class="accordion-item mb-3 shadow-sm rounded-4 overflow-hidden">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="background: linear-gradient(90deg,#fffaf4,#fff8f0);">
+          {% if lang == 'en' %}1. Demographics & Displacement{% else %}١. الديموغرافيا والنزوح{% endif %}
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#statsAccordion">
+        <div class="accordion-body">
+          {% if lang == 'en' %}
+          <p>Most respondents are young (20–30) — more than half of participants. Young women (20–30) were the largest subgroup (n = <strong>100</strong>), indicating their accessibility and willingness to share experiences.</p>
+
+          <p>Most participants originally lived in <strong>Khartoum, Omdurman, and Bahri</strong>. Post-displacement destinations included international moves: <strong>Saudi Arabia (55)</strong>, <strong>Cairo (48)</strong>, <strong>UAE (26)</strong>, and internal movements to safer Sudanese cities (e.g., Omdurman, Port Sudan).</p>
+
+          <div class="row mt-3">
+            <div class="col-md-4 text-center">
+              <div class="fs-4 fw-bold">55</div><div class="small text-muted">Saudi Arabia</div>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="fs-4 fw-bold">48</div><div class="small text-muted">Cairo</div>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="fs-4 fw-bold">26</div><div class="small text-muted">UAE</div>
+            </div>
+          </div>
+          {% else %}
+          <p>غالبية المستجوبين من الشباب (٢٠–٣٠) — أكثر من نصف المشاركين. كانت النساء الشابات (٢٠–٣٠) أكبر شريحة (عدد = <strong>١٠٠</strong>)، مما يدل على سهولة الوصول إليهن واستعدادهن للمشاركة.</p>
+
+          <p>كان معظم المشاركين يقيمون في <strong>الخرطوم، أم درمان، وبحري</strong> قبل النزوح. بعد النزوح شملت الوجهات دولاً: <strong>المملكة العربية السعودية (٥٥)</strong>، <strong>القاهرة (٤٨)</strong>، <strong>الإمارات (٢٦)</strong>، ونُقِل آخرون إلى مدن آمنة داخل السودان مثل أم درمان وبورتسودان.</p>
+
+          <div class="row mt-3">
+            <div class="col-md-4 text-center">
+              <div class="fs-4 fw-bold">٥٥</div><div class="small text-muted">المملكة العربية السعودية</div>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="fs-4 fw-bold">٤٨</div><div class="small text-muted">القاهرة</div>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="fs-4 fw-bold">٢٦</div><div class="small text-muted">الإمارات</div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Access to Information & Exposure -->
+    <div class="accordion-item mb-3 shadow-sm rounded-4 overflow-hidden">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="background: linear-gradient(90deg,#fffaf4,#fff8f0);">
+          {% if lang == 'en' %}2. Access to Information & Exposure to Misinformation{% else %}٢. الوصول للمعلومات والتعرّض للمعلومات المضللة{% endif %}
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#statsAccordion">
+        <div class="accordion-body">
+          {% if lang == 'en' %}
+          <p>Information access was a major issue: <strong>137</strong> participants reported difficulty, <strong>83</strong> reported moderate difficulty, and only <strong>2</strong> found access easy — a clear information crisis.</p>
+
+          <p><strong>Verification behaviors:</strong> 112 people checked with multiple contacts; 56 searched online; 19 trusted sources without question; 30 did not verify. Younger respondents (20–30) relied heavily on social media (Facebook, WhatsApp, Instagram) and were more proactive in verification; older respondents preferred traditional media and personal networks.</p>
+
+          <div class="mt-3">
+            <div class="small text-muted mb-2">Access difficulty distribution</div>
+            <div class="progress" style="height:18px;">
+              <div class="progress-bar" role="progressbar" style="width:62%;" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100">137 / 222</div>
+            </div>
+          </div>
+          {% else %}
+          <p>كان الوصول إلى المعلومات مشكلة رئيسية: <strong>١٣٧</strong> ذكرت صعوبة كبيرة، <strong>٨٣</strong> صعوبة متوسطة، وفقط <strong>٢</strong> وجدوا الوصول سهلاً — أزمة معلومات واضحة.</p>
+
+          <p><strong>سلوكيات التحقق:</strong> ١١٢ تواصلوا مع عدة أشخاص؛ ٥٦ بحثوا عبر الإنترنت؛ ١٩ وثقوا بالمصادر دون سؤال؛ ٣٠ لم يتحققوا. الشباب (٢٠–٣٠) اعتمدوا كثيرًا على وسائل التواصل الاجتماعي وكانوا أكثر نشاطًا بالتحقق؛ الأكبر سنًا فضّلوا الإعلام التقليدي والشبكات الشخصية.</p>
+
+          <div class="mt-3">
+            <div class="small text-muted mb-2">توزيع صعوبة الوصول</div>
+            <div class="progress" style="height:18px;">
+              <div class="progress-bar" role="progressbar" style="width:62%;" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100">١٣٧ / ٢٢٢</div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Chatbot Awareness & Trust -->
+    <div class="accordion-item mb-3 shadow-sm rounded-4 overflow-hidden">
+      <h2 class="accordion-header" id="headingThree">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="background: linear-gradient(90deg,#fffaf4,#fff8f0);">
+          {% if lang == 'en' %}3. Awareness & Acceptance of Chatbots{% else %}٣. الوعي والقبول للـ Chatbots{% endif %}
+        </button>
+      </h2>
+      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#statsAccordion">
+        <div class="accordion-body">
+          {% if lang == 'en' %}
+          <p>Out of <strong>222</strong> respondents, <strong>115</strong> had prior experience with chatbots (majority younger cohort). Regarding trust in chatbot verification: <strong>98</strong> strongly agreed, <strong>95</strong> somewhat agreed, <strong>29</strong> strongly disagreed.</p>
+
+          <p>Future engagement: <strong>97</strong> willing to share experiences, <strong>42</strong> unsure, <strong>83</strong> declined — privacy and security concerns are likely drivers.</p>
+
+          <div class="row mt-3 g-2">
+            <div class="col-4 text-center">
+              <div class="fs-4 fw-bold">98</div><div class="small text-muted">Strongly trust</div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="fs-4 fw-bold">95</div><div class="small text-muted">Somewhat trust</div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="fs-4 fw-bold">29</div><div class="small text-muted">Strongly disagree</div>
+            </div>
+          </div>
+          {% else %}
+          <p>من بين <strong>٢٢٢</strong> مستجيبًا، <strong>١١٥</strong> لديهم خبرة سابقة مع روبوتات الدردشة (معظمهم من الشباب). بالنسبة للثقة: <strong>٩٨</strong> يثقون بشدة، <strong>٩٥</strong> يثقون إلى حد ما، <strong>٢٩</strong> يرفضون بشدة.</p>
+
+          <p>الاستعداد للمشاركة مستقبلًا: <strong>٩٧</strong> مستعدون، <strong>٤٢</strong> غير متأكدين، <strong>٨٣</strong> رفضوا — تعكس مخاوف الخصوصية والأمن.</p>
+
+          <div class="row mt-3 g-2">
+            <div class="col-4 text-center">
+              <div class="fs-4 fw-bold">٩٨</div><div class="small text-muted">يثقون بشدة</div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="fs-4 fw-bold">٩٥</div><div class="small text-muted">يثقون إلى حد ما</div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="fs-4 fw-bold">٢٩</div><div class="small text-muted">يرفضون بشدة</div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Summary & Recommendations -->
+    <div class="accordion-item mb-3 shadow-sm rounded-4 overflow-hidden">
+      <h2 class="accordion-header" id="headingFour">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="background: linear-gradient(90deg,#fffaf4,#fff8f0);">
+          {% if lang == 'en' %}4. Summary & Recommendations{% else %}٤. ملخص وتوصيات{% endif %}
+        </button>
+      </h2>
+      <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#statsAccordion">
+        <div class="accordion-body">
+          {% if lang == 'en' %}
+          <ul>
+            <li><strong>High information barriers:</strong> design simple verification tools and outreach for those with low digital literacy.</li>
+            <li><strong>Leverage chatbots:</strong> respondents are open to automated verification if anonymity and clarity are guaranteed.</li>
+            <li><strong>Target youth:</strong> younger groups are reachable via social platforms — create safe verification channels there.</li>
+            <li><strong>Support return & displacement tracking:</strong> humanitarian response should account for both internal and cross-border displacement patterns.</li>
+          </ul>
+          {% else %}
+          <ul>
+            <li><strong>حواجز معلوماتية كبيرة:</strong> صمم أدوات تحقق بسيطة وأنشطة توعوية للفئات ذات المهارات الرقمية المنخفضة.</li>
+            <li><strong>الاستفادة من الروبوتات:</strong> الناس متقبلون لحلول آلية إذا كانت تحمي الهوية وتقدم نتائج واضحة.</li>
+            <li><strong>استهداف الشباب:</strong> الشباب متاحون عبر منصات التواصل — أنشئ قنوات تحقق آمنة هناك.</li>
+            <li><strong>دعم تتبع النزوح:</strong> يجب أن تأخذ استجابة المنظمات الإنسانية بعين الاعتبار النزوح الداخلي والعابر للحدود.</li>
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- end accordion -->
+
+  <!-- Bottom CTA: Export/Print -->
+  <div class="text-center mt-5">
+    <a href="{{ url_for('main.home_fully', lang=lang) }}" class="btn" style="background: linear-gradient(90deg,#f2a65a,#d17a22); color:#fff;">
+      {% if lang == 'en' %}Back to Home{% else %}العودة للرئيسية{% endif %}
+    </a>
+  </div>
+
+</div>
+
+<!-- --- Styles & small JS for animation --- -->
+<style>
+.counter {
+  font-size: 1.6rem;
+  color: #1a2a6c;
+}
+.accordion-button {
+  font-weight: 700;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Animated counters when visible
+  const counters = document.querySelectorAll('.counter');
+  const speed = 1200; // ms duration
+
+  function animateCounter(el, target) {
+    let start = 0;
+    const stepTime = Math.max(20, Math.floor(speed / target));
+    const timer = setInterval(() => {
+      start += Math.ceil(target / (speed / stepTime));
+      if (start >= target) {
+        el.textContent = target;
+        clearInterval(timer);
+      } else {
+        el.textContent = start;
+      }
+    }, stepTime);
+  }
+
+  // Intersection observer to trigger when section visible
+  const obsOptions = { threshold: 0.4 };
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        counters.forEach(c => {
+          if (!c.dataset.animated) {
+            animateCounter(c, parseInt(c.dataset.target, 10));
+            c.dataset.animated = 'true';
+          }
+        });
+        obs.disconnect();
+      }
+    });
+  }, obsOptions);
+
+  if (counters.length) {
+    observer.observe(counters[0].closest('.row') || document.querySelector('.row'));
+  }
+});
+</script>
+{% endblock %}

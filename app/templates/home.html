@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="{{ 'ar' if request.args.get('lang') == 'ar' else 'en' }}" dir="{{ 'rtl' if request.args.get('lang') == 'ar' else 'ltr' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bousala - Welcome</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* 🌅 Page background matching other pages */
+        body {
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2, #ffcc80);
+            color: #3c2a14;
+            overflow: hidden;
+        }
+
+        /* 🌟 Floating animated orbs */
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(50px);
+            opacity: 0.3;
+            animation: float 12s ease-in-out infinite;
+        }
+        .orb:nth-child(1) {
+            width: 200px; height: 200px;
+            background: #d17a22;
+            top: 10%; left: 5%;
+            animation-delay: 0s;
+        }
+        .orb:nth-child(2) {
+            width: 250px; height: 250px;
+            background: #ffd7a3;
+            bottom: 15%; right: 10%;
+            animation-delay: 4s;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-25px); }
+        }
+
+        /* ✨ Welcome container */
+        .welcome-container {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 50px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            width: 85%;
+            max-width: 1100px;
+            border-left: 6px solid #d17a22;
+            transition: transform 0.3s ease;
+        }
+
+        .welcome-container:hover {
+            transform: scale(1.01);
+        }
+
+        /* 🧭 Left side text */
+        .description h1 {
+            font-weight: 700;
+            font-size: 3rem;
+            color: #d17a22;
+            margin-bottom: 20px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .description p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #5e4632;
+        }
+
+        /* 🎯 Buttons */
+        .buttons .btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            border-radius: 14px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-register {
+            background: linear-gradient(135deg, #e28d2d, #d17a22);
+            color: white;
+            box-shadow: 0 4px 12px rgba(209,122,34,0.3);
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+            color: white;
+            box-shadow: 0 4px 12px rgba(24,90,157,0.3);
+        }
+
+        .btn-guest {
+            background: linear-gradient(135deg, #ff9966, #ff5e62);
+            color: white;
+            box-shadow: 0 4px 12px rgba(255,94,98,0.3);
+        }
+
+        .buttons .btn:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.1);
+        }
+
+        /* 🌐 Language switch */
+        .lang-switch {
+            position: absolute;
+            top: 25px;
+            right: 30px;
+            z-index: 3;
+        }
+
+        .lang-switch a {
+            border-radius: 25px;
+            border: 2px solid #d17a22;
+            color: #d17a22;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .lang-switch a:hover {
+            background: #d17a22;
+            color: white;
+        }
+
+        /* 📱 Responsive */
+        @media (max-width: 768px) {
+            .welcome-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 40px 25px;
+            }
+            .description h1 {
+                font-size: 2.2rem;
+            }
+            .description p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🌐 Language Switch -->
+    <div class="lang-switch">
+        {% if request.args.get('lang') == 'ar' %}
+            <a href="{{ url_for('main.home', lang='en') }}" class="btn btn-sm">English</a>
+        {% else %}
+            <a href="{{ url_for('main.home', lang='ar') }}" class="btn btn-sm">العربية</a>
+        {% endif %}
+    </div>
+
+ 
+    <div class="orb"></div>
+    <div class="orb"></div>
+
+    <!-- 🌟 Welcome content -->
+    <div class="welcome-container">
+        <!-- Left side: Description -->
+        <div class="description">
+            {% if request.args.get('lang') == 'en' %}
+                <h1>Bousala</h1>
+                <p>
+                    In times of war <br>
+                    <strong>truth saves lives</strong><br>
+                    We’ll help you make informed decisions
+                </p>
+            {% else %}
+                <h1>بوصلة</h1>
+                <p>
+                    في أوقات الحرب <br>
+                    <strong>الحقيقة تنقذ الأرواح</strong><br>
+                    سنساعدك على اتخاذ القرارات بوعي
+                </p>
+            {% endif %}
+        </div>
+
+        <!-- Right side: Buttons -->
+        <div class="buttons d-flex flex-column justify-content-center">
+            {% if request.args.get('lang') == 'en' %}
+                <a href="{{ url_for('main.register', lang='en') }}" class="btn btn-register">Register</a>
+                <a href="{{ url_for('main.login', lang='en') }}" class="btn btn-login">Log In</a>
+                <a href="{{ url_for('main.guest_start', lang='en') }}" class="btn btn-guest">Continue as Guest</a>
+            {% else %}
+                <a href="{{ url_for('main.register', lang='ar') }}" class="btn btn-register">تسجيل</a>
+                <a href="{{ url_for('main.login', lang='ar') }}" class="btn btn-login">تسجيل الدخول</a>
+                <a href="{{ url_for('main.guest_start', lang='ar') }}" class="btn btn-guest">الدخول كزائر</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
